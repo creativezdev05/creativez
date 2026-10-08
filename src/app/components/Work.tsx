@@ -23,44 +23,38 @@ interface WorkItem {
 const works: WorkItem[] = [
   {
     number: '01',
-    title: 'Branding',
-    description: 'Crafting cohesive identities that make your brand unforgettable.',
-    image:
-      'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e472df006e91579f4ebf07_Mask%20group%20(6).webp',
-    overlayImage:
-      'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e4a2925d514ce9fea6d828_Mask%20group%20(7).webp',
-    services: ['Brand Design', 'UIUX Design', 'Web Development'],
+    title: 'Game Development',
+    description: 'Building immersive worlds, seamless mechanics, and engaging gameplay experiences.',
+    image: '/images/work/1.png',
+    overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e4a2925d514ce9fea6d828_Mask%20group%20(7).webp',
+    services: ['Game Mechanics', '3D Environment Design', 'Unity / Unreal Engine'],
     stats: [
-      { label: 'Customer Rate', value: '14%' },
-      { label: 'User Satisfaction', value: '98%' },
+      { label: 'Player Retention', value: '42%' },
+      { label: 'Average Session Time', value: '28m' },
     ],
   },
   {
     number: '02',
     title: 'UIUX Design',
-    description: 'Crafting cohesive identities that make your brand unforgettable.',
-    image:
-      'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e4a3ac5075926ecb8e05d0_Mask%20group%20(8).webp',
-    overlayImage:
-      'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb9272cdd440a88de8dc_Mask%20group%20(22).webp',
-    services: ['Brand Design', 'UIUX Design', 'Web Development'],
+    description: 'Designing intuitive interfaces and user flows that optimize digital interaction and conversion.',
+    image: '/images/work/2.png',
+    overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb9272cdd440a88de8dc_Mask%20group%20(22).webp',
+    services: ['User Research', 'Wireframing & Prototyping', 'Design Systems'],
     stats: [
-      { label: 'Customer Rate', value: '14%' },
+      { label: 'Conversion Lift', value: '+35%' },
       { label: 'User Satisfaction', value: '98%' },
     ],
   },
   {
     number: '03',
-    title: 'Digital Marketing',
-    description: 'Crafting cohesive identities that make your brand unforgettable.',
-    image:
-      'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e4a3ac121c8ebd8828eda1_Mask%20group%20(9).webp',
-    overlayImage:
-      'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb5bb8f8413ddf5a760a_Mask%20group%20(21).webp',
-    services: ['Brand Design', 'UIUX Design', 'Web Development'],
+    title: '3D Animation',
+    description: 'Bringing visual stories to life through dynamic motion, photorealistic assets, and CGI VFX.',
+    image: '/images/work/3.png',
+    overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb5bb8f8413ddf5a760a_Mask%20group%20(21).webp',
+    services: ['Character Rigging', '3D Modeling', 'Motion Graphics'],
     stats: [
-      { label: 'Customer Rate', value: '14%' },
-      { label: 'User Satisfaction', value: '98%' },
+      { label: 'Render Efficiency', value: '+60%' },
+      { label: 'Client Approval Rate', value: '99%' },
     ],
   },
 ];

@@ -15,33 +15,30 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      'They didn’t just design for us — they designed with us. Every detail, every color, every idea reflected our story perfectly. Truly a world-class creative team!',
+      'Working with Creativez Solution was a game-changer. They transformed our vision into a stunning digital experience that elevated our brand presence overnight.',
     name: 'Luna Mars',
     role: 'CEO',
     avatar:
       'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e51940d340b6d600c57a94_66c42679a0a118c60d5ea03c_Client%20Photo%205.webp',
-    image:
-      'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e5e86e4e1bcc0d482ac736_Mask%20group%20(13).webp',
+    image: '/images/testimonials/laptop.png',
   },
   {
     quote:
-      'Working with PIXGRO was a turning point for our brand. Their creativity, precision, and strategy transformed our visual identity and helped us connect with our audience like never before.',
+      'The strategy and design precision from Creativez Solution exceeded our expectations. Their work directly helped us build deeper trust and engagement with our target audience.',
     name: 'Jane Cooper',
     role: 'Marketer',
     avatar:
       'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e5e86d3dec1117ca4859d7_Ellipse%203%20(2).webp',
-    image:
-      'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9cdd72cf31e8dd0258715_Mask%20group%20(19).webp',
+    image: '/images/testimonials/mob.png',
   },
   {
     quote:
-      'They didn’t just design for us — they designed with us. Every detail, every color, every idea reflected our story perfectly. Truly a world-class creative team!',
+      'Creativez Solution didn’t just execute a project — they truly partnered with us. Every detail and asset delivered reflected our story and values perfectly.',
     name: 'Robert Fox',
     role: 'Marketer',
     avatar:
       'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e5e86d9de0717533e33f4c_Ellipse%203%20(1).webp',
-    image:
-      'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e5e86e843d2b25c8ceb5ca_Mask%20group%20(12).webp',
+    image: '/images/work/3.png',
   },
 ];
 
@@ -49,7 +46,7 @@ const track = [...testimonials, ...testimonials];
 
 function TestimonialCard({ item }: { item: Testimonial }) {
   return (
-    <div className="flex w-full flex-col gap-10 rounded-[2.5rem] border border-[#434247] bg-[#FAFAFA]/9 p-8 backdrop-blur-[1.5px] md:flex-row md:items-stretch md:gap-14 md:p-10">
+    <div className="flex w-full flex-col gap-10 rounded-[2.5rem] border border-[#434247] bg-[#FAFAFA]/9 p-8 backdrop-blur-[1.5px] md:flex-row md:items-stretch md:justify-between md:gap-14 md:p-10">
       <div className="flex w-full max-w-[480px] flex-col justify-between gap-10">
         <div className="flex flex-col gap-4">
           <Quote className="h-7 w-7 flex-none fill-[#7d64c5] text-[#7d64c5]" />
@@ -57,7 +54,7 @@ function TestimonialCard({ item }: { item: Testimonial }) {
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="relative h-15 w-15 flex-none overflow-hidden rounded-full">
+          <div className="relative h-14 w-14 flex-none overflow-hidden rounded-full">
             <Image src={item.avatar} alt={item.name} fill className="object-cover" />
           </div>
           <div className="flex flex-col gap-1">
@@ -67,8 +64,9 @@ function TestimonialCard({ item }: { item: Testimonial }) {
         </div>
       </div>
 
-      <div className="relative hidden h-48 w-full max-w-[377px] flex-none overflow-hidden rounded-[1.25rem] md:ml-auto md:block md:h-auto md:min-h-65">
-        <Image src={item.image} alt="" fill className="object-cover" />
+      {/* Updated Image Container */}
+      <div className="relative hidden w-full max-w-[377px] flex-none overflow-hidden rounded-[1.25rem] md:block md:self-stretch">
+        <Image src={item.image} alt="" fill className="object-cover object-center" />
       </div>
     </div>
   );
