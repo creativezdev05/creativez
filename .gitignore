@@ -40,4 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-creativez-solution-firebase-adminsdk-fbsvc-5d4bb6e955
+creativez-solution-firebase-adminsdk-fbsvc-5d4bb6e955.json
+firestore.rules
