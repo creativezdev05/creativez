@@ -1,0 +1,13 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // All reads/writes happen server-side via the Firebase Admin SDK, which
+    // bypasses these rules using trusted credentials. Deny all direct client
+    // access so encrypted subscriber data can never be read or tampered with
+    // from the browser.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
