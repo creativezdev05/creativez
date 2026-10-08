@@ -19,11 +19,24 @@ export default function Hero() {
   });
   const watermarkY = useTransform(scrollYProgress, [0, 1], [0, -120]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showPause, setShowPause] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handlePlayClick = () => {
     setIsPlaying(true);
+    setShowPause(true);
+
+    // Clear any previous timeout if triggered repeatedly
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current);
+    }
+
+    // Hide pause button after 1 second (1000ms)
+    pauseTimeoutRef.current = setTimeout(() => {
+      setShowPause(false);
+    }, 2000);
     // Timeout gives React a tick to mount the video element before triggering play
     setTimeout(() => {
       if (videoRef.current) {
@@ -32,9 +45,25 @@ export default function Hero() {
     }, 0);
   };
 
-  const handleVideoEnded = () => {
+  const handlePauseClick = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current);
+    }
     setIsPlaying(false);
+    setShowPause(false);
   };
+
+  const handleVideoEnded = () => {
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current);
+    }
+    setIsPlaying(false);
+    setShowPause(false);
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -153,36 +182,46 @@ export default function Hero() {
           </div>
 
           <div className="relative flex h-80 items-center justify-center overflow-hidden rounded-[2rem] md:h-125">
-            {isPlaying ? (
-            /* Video replaces image when playing */
-            <video
-              ref={videoRef}
-              src="/images/hero/banner.mp4" /* Replace with your video source path */
-              onEnded={handleVideoEnded}
-              playsInline
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            /* Image + Play Button when video is idle/finished */
-            <>
-              <Image
-                src="/images/hero/banner.png"
-                alt="Designer working at a desk with a colorful gradient screen"
-                fill
-                priority
-                className="object-cover"
-              />
+           {isPlaying ? (
+              <>
+                <video
+                  ref={videoRef}
+                  src="/images/hero/creativez_banner.mp4"
+                  onEnded={handleVideoEnded}
+                  playsInline
+                  className="h-full w-full object-cover"
+                />
+                {showPause && (
+                  <button
+                    type="button"
+                    onClick={handlePauseClick}
+                    aria-label="Pause showreel"
+                    className="absolute z-20 flex h-16 w-16 items-center justify-center rounded-full bg-[#FAFAFA] text-heading transition-all hover:scale-105 focus:outline-none"
+                  >
+                    <Pause className="h-6 w-6 fill-current" />
+                  </button>
+                )}
+              </>
+            ) : (
+              <>
+                <Image
+                  src="/images/hero/banner.png"
+                  alt="Designer working at a desk with a colorful gradient screen"
+                  fill
+                  priority
+                  className="object-cover"
+                />
 
-              <button
-                type="button"
-                onClick={handlePlayClick}
-                aria-label="Play showreel"
-                className="relative z-20 flex h-16 w-16 items-center justify-center rounded-full bg-[#FAFAFA] text-heading transition-transform hover:scale-105 focus:outline-none"
-              >
-                <Play style={{ cursor: 'pointer' }} className="h-6 w-6 fill-current" />
-              </button>
-            </>
-          )}
+                <button
+                  type="button"
+                  onClick={handlePlayClick}
+                  aria-label="Play showreel"
+                  className="relative z-20 flex h-16 w-16 items-center justify-center rounded-full bg-[#FAFAFA] text-heading transition-transform hover:scale-105 focus:outline-none"
+                >
+                  <Play className="h-6 w-6 fill-current" />
+                </button>
+              </>
+            )}
           </div>
         </div>
       </motion.div>

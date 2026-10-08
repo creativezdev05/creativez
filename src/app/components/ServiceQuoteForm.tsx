@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
+import { sendGAEvent } from '@next/third-parties/google';
 
 interface ServiceQuoteFormProps {
   serviceSlug: string;
@@ -37,6 +38,11 @@ export default function ServiceQuoteForm({ serviceSlug, serviceTitle }: ServiceQ
       if (!response.ok) {
         throw new Error(data?.error || 'Something went wrong. Please try again.');
       }
+      sendGAEvent('event', 'service_quote_form_submit', {
+        form_name: 'service_quote',
+        service_slug: serviceSlug,
+        service_title: serviceTitle,
+      });
       setStatus('idle');
       setSubmitted(true);
       setName('');

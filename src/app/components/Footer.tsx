@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Send } from 'lucide-react';
+import { sendGAEvent } from '@next/third-parties/google';
 
 interface FooterColumn {
   title: string;
@@ -127,7 +128,10 @@ export default function Footer() {
                           setStatus('error');
                           setError('This email is already subscribed.');
                           return;
-                        } 
+                        }
+                        sendGAEvent('event', 'newsletter_form_submit', {
+                          form_name: 'newsletter',
+                        });
                         setStatus('idle');
                         setSubmitted(true);
                         setEmail('');
