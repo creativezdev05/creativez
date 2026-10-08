@@ -19,7 +19,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Pixgro — Creative Agency',
+  title: 'Creativez Solutions',
   description: 'Scale your brand with unlimited design.',
 };
 
