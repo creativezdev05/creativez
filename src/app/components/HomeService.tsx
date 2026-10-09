@@ -23,7 +23,7 @@ export default function HomeService({ services }: HomeServiceProps) {
   return (
     <section
       id="Service"
-      className="bg-[linear-gradient(223deg,#1b1a21_66.8%,#5a4b99)] px-6 py-16 md:py-24"
+      className="bg-(image:--gradient-hero) px-6 py-16 md:py-24"
     >
       <div className="mx-auto max-w-[1500px]">
         {featuredServices.map((service, index) => (
@@ -77,7 +77,7 @@ export default function HomeService({ services }: HomeServiceProps) {
                   className="absolute top-0 left-10 -rotate-[8.8deg] rounded-[20px] object-cover"
                 />
                 <Image
-                  src={service.thumbnail}
+                  src={service.featureThumbnail !== "" ? service.featureThumbnail : '/images/services/default.png'}
                   alt={service.title}
                   width={196}
                   height={190}
@@ -91,7 +91,7 @@ export default function HomeService({ services }: HomeServiceProps) {
         <div className="mt-14 flex justify-center md:mt-20">
           <Link
             href="/services"
-            className="inline-flex items-center gap-3 rounded-full bg-gradient-to-br from-[#7d64c5] to-[#5a4b99] px-7 py-3.5 text-sm font-semibold text-[#FAFAFA] transition-colors hover:bg-[#433b7b] hover:bg-none"
+            className="inline-flex items-center gap-3 rounded-full bg-gradient-to-br from-primary-light to-primary-dark px-7 py-3.5 text-sm font-semibold text-[#FAFAFA] transition-colors hover:bg-dark hover:bg-none"
           >
             View more services
             <ArrowUpRight className="h-4 w-4" />

@@ -56,12 +56,12 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="rounded-[2.5rem] bg-[#FAFAFA] py-12"
+              className="rounded-[2.5rem] bg-surface py-12"
             >
               <div className="flex flex-col items-start gap-8 px-8 md:px-11">
                 <h6 className="text-xl font-semibold text-[#3d4048]">{plan.name}</h6>
                 <div className="flex items-center gap-4">
-                  <span className="text-4xl font-semibold text-[#6958cc] md:text-5xl">
+                  <span className="text-4xl font-semibold text-primary md:text-5xl">
                     {plan.price}
                   </span>
                   <p className="pt-2 text-base text-[#57576b]">/ Per Project</p>
@@ -69,19 +69,19 @@ export default function Pricing() {
               </div>
 
               <div className="relative my-10 flex items-center justify-center gap-4 px-8 md:px-11">
-                <span className="h-px w-full max-w-[163px] bg-gradient-to-r from-[#606776] to-[#FAFAFA] opacity-30" />
+                <span className="h-px w-full max-w-[163px] bg-gradient-to-r from-divider to-surface opacity-30" />
                 <span className="shrink-0 text-lg font-semibold text-[#57576b]">
                   Included Features
                 </span>
-                <span className="h-px w-full max-w-[163px] bg-gradient-to-l from-[#606776] to-[#FAFAFA] opacity-30" />
+                <span className="h-px w-full max-w-[163px] bg-gradient-to-l from-divider to-surface opacity-30" />
               </div>
 
               <div className="flex flex-col gap-10 px-8 md:px-11">
                 <ul className="flex flex-col gap-6">
                   {plan.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-center gap-4">
-                      <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-[#6958cc]/10">
-                        <Check className="h-4 w-4 text-[#6958cc]" />
+                      <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-primary/10">
+                        <Check className="h-4 w-4 text-primary" />
                       </span>
                       <span className="text-lg font-medium text-[#57576b]">{feature}</span>
                     </li>
@@ -90,7 +90,7 @@ export default function Pricing() {
 
                 <a
                   href="#Email"
-                  className="group relative inline-flex w-fit items-center gap-3 overflow-hidden rounded-full bg-gradient-to-br from-[#7d64c5] to-[#5a4b99] px-7 py-4 text-sm font-semibold text-[#FAFAFA] transition-colors hover:bg-[#433b7b] hover:bg-none"
+                  className="group relative inline-flex w-fit items-center gap-3 overflow-hidden rounded-full bg-gradient-to-br from-primary-light to-primary-dark px-7 py-4 text-sm font-semibold text-[#FAFAFA] transition-colors hover:bg-dark hover:bg-none"
                 >
                   Get started
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

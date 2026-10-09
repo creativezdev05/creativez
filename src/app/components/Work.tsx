@@ -23,11 +23,11 @@ interface WorkItem {
 const works: WorkItem[] = [
   {
     number: '01',
-    title: 'Game Development',
-    description: 'Building immersive worlds, seamless mechanics, and engaging gameplay experiences.',
+    title: 'Immersive World Building',
+    description: 'Engineering interactive game mechanics, rich environments, and real-time experiences across modern engines.',
     image: '/images/work/1.png',
     overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e4a2925d514ce9fea6d828_Mask%20group%20(7).webp',
-    services: ['Game Mechanics', '3D Environment Design', 'Unity / Unreal Engine'],
+    services: ['Core Gameplay Systems', 'Spatial 3D Environments', 'Real-Time Engine Tech'],
     stats: [
       { label: 'Player Retention', value: '42%' },
       { label: 'Average Session Time', value: '28m' },
@@ -35,11 +35,11 @@ const works: WorkItem[] = [
   },
   {
     number: '02',
-    title: 'UIUX Design',
-    description: 'Designing intuitive interfaces and user flows that optimize digital interaction and conversion.',
-    image: '/images/work/2.png',
+    title: 'Digital Product Design',
+    description: 'Crafting user-centered interfaces and behavioral flows that turn complex systems into effortless interactions.',
+    image: '/images/work/home-service-ui-ux.png',
     overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb9272cdd440a88de8dc_Mask%20group%20(22).webp',
-    services: ['User Research', 'Wireframing & Prototyping', 'Design Systems'],
+    services: ['User Behavior Architecture', 'Interactive Design Systems', 'Scalable UI Infrastructure'],
     stats: [
       { label: 'Conversion Lift', value: '+35%' },
       { label: 'User Satisfaction', value: '98%' },
@@ -47,14 +47,38 @@ const works: WorkItem[] = [
   },
   {
     number: '03',
-    title: '3D Animation',
-    description: 'Bringing visual stories to life through dynamic motion, photorealistic assets, and CGI VFX.',
-    image: '/images/work/3.png',
+    title: 'CGI & Motion Synthesis',
+    description: 'Pushing visual boundaries through character rigging, photorealistic assets, and high-fidelity 3D motion.',
+    image: '/images/work/cgi.png',
     overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb5bb8f8413ddf5a760a_Mask%20group%20(21).webp',
-    services: ['Character Rigging', '3D Modeling', 'Motion Graphics'],
+    services: ['Advanced Character Rigging', 'Photorealistic Asset Modeling', 'Cinematic Motion Graphics'],
     stats: [
       { label: 'Render Efficiency', value: '+60%' },
       { label: 'Client Approval Rate', value: '99%' },
+    ],
+  },
+  {
+    number: '04',
+    title: 'Creative Web Engineering',
+    description: 'Architecting ultra-fast web platforms with fluid animations, dynamic routing, and seamless design integration.',
+    image: '/images/work/home-service-ui-ux.png',
+    overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb9272cdd440a88de8dc_Mask%20group%20(22).webp',
+    services: ['Front-End Performance', 'Custom Shader & SVG Effects', 'Headless System Architecture'],
+    stats: [
+      { label: 'Lighthouse Score', value: '99/100' },
+      { label: 'Load Time Reduction', value: '-65%' },
+    ],
+  },
+  {
+    number: '05',
+    title: 'Virtual & Augmented Realities',
+    description: 'Building next-generation spatial computing experiences for immersive training, gaming, and digital interaction.',
+    image: '/images/work/1.png',
+    overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e4a2925d514ce9fea6d828_Mask%20group%20(7).webp',
+    services: ['XR Interaction Design', 'Spatial Audio & Haptics', 'Cross-Platform VR Deployment'],
+    stats: [
+      { label: 'Frame Rate Stability', value: '90 FPS' },
+      { label: 'User Immersion Index', value: '95%' },
     ],
   },
 ];
@@ -132,9 +156,9 @@ function WorkCard({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative min-h-140 overflow-hidden rounded-[2.5rem] bg-[#1c1b22] p-6 md:min-h-170 md:rounded-[4.375rem] md:p-14"
+          className="relative min-h-140 overflow-hidden rounded-[2.5rem] bg-black-gradient p-6 md:min-h-170 md:rounded-[4.375rem] md:p-14"
         >
-        <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-gradient-to-br from-transparent via-transparent to-[#433b7b]/70" />
+        <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-gradient-to-br from-transparent via-transparent to-dark/70" />
         <Image
           src={item.overlayImage}
           alt=""
@@ -146,7 +170,7 @@ function WorkCard({
         <button
           type="button"
           aria-label={`View ${item.title} project`}
-          className="absolute top-6 right-6 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-[#262626] bg-[#141414] text-[#FAFAFA] transition-transform hover:scale-105 md:top-10 md:right-10"
+          className="absolute top-6 right-6 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-[#262626] bg-nav-item text-[#FAFAFA] transition-transform hover:scale-105 md:top-10 md:right-10"
         >
           <ArrowUpRight className="h-5 w-5" />
         </button>
@@ -161,7 +185,7 @@ function WorkCard({
               className="flex flex-col gap-4"
             >
               <div className="flex items-center gap-2.5">
-                <span className="h-3 w-3 rounded-full bg-gradient-to-r from-[#7d64c5] to-[#5a4b99]" />
+                <span className="h-3 w-3 rounded-full bg-gradient-to-r from-primary-light to-primary-dark" />
                 <span className="text-sm font-semibold text-[#A1A1AA]">{item.number}</span>
               </div>
               <h3 className="text-left text-2xl font-semibold text-[#FAFAFA] md:text-3xl">
@@ -205,7 +229,7 @@ function WorkCard({
                 {item.services.map((service) => (
                   <span
                     key={service}
-                    className="rounded-full border border-[#FAFAFA]/30 bg-[#FAFAFA]/8 px-3 py-1.5 text-sm text-[#FAFAFA]"
+                    className="rounded-full border border-[#FAFAFA]/30 bg-surface/8 px-3 py-1.5 text-sm text-[#FAFAFA]"
                   >
                     {service}
                   </span>

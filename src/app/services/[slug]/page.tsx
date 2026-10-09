@@ -67,7 +67,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 {detail.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-[#6958cc]/30 bg-[#6958cc]/10 px-4 py-2 text-sm font-medium text-[#5a4b99]"
+                    className="rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary-dark"
                   >
                     {tag}
                   </span>
@@ -85,7 +85,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {detail.whatIncludes.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-base text-body">
-                  <Check className="mt-0.5 h-5 w-5 flex-none text-[#6958cc]" />
+                  <Check className="mt-0.5 h-5 w-5 flex-none text-primary" />
                   {item}
                 </li>
               ))}
@@ -102,18 +102,18 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               {detail.packages.map((pkg) => (
                 <div
                   key={pkg.name}
-                  className="flex flex-col gap-4 rounded-[2rem] border border-[#6958cc]/15 bg-[#FAFAFA]/40 p-7"
+                  className="flex flex-col gap-4 rounded-[2rem] border border-primary/15 bg-surface/40 p-7"
                 >
                   <div>
                     <h3 className="text-xl font-semibold text-heading">{pkg.name}</h3>
                     {pkg.price && (
-                      <p className="mt-1 text-lg font-medium text-[#5a4b99]">{pkg.price}</p>
+                      <p className="mt-1 text-lg font-medium text-primary-dark">{pkg.price}</p>
                     )}
                   </div>
                   <ul className="flex flex-col gap-2">
                     {pkg.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-2 text-sm text-body">
-                        <Check className="mt-0.5 h-4 w-4 flex-none text-[#6958cc]" />
+                        <Check className="mt-0.5 h-4 w-4 flex-none text-primary" />
                         {feature}
                       </li>
                     ))}

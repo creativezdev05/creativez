@@ -25,7 +25,7 @@ export default async function Home() {
   return (
     <main className="relative min-h-screen">
       <DotGridBackground
-        dotColor="#6366f1"
+        dotColor="#0786db"
         className="fixed inset-0 -z-10"
       />
       <Navbar />

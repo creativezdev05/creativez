@@ -60,9 +60,9 @@ export default function ServiceQuoteForm({ serviceSlug, serviceTitle }: ServiceQ
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="mx-auto w-full max-w-2xl rounded-[2.5rem] bg-gradient-to-br from-[#FAFAFA]/20 to-[#FAFAFA]/5 p-px"
+      className="mx-auto w-full max-w-2xl rounded-[2.5rem] bg-gradient-to-br from-surface/20 to-surface/5 p-px"
     >
-      <div className="rounded-[2.5rem] bg-[#171618]/80 p-7 backdrop-blur-[1.5px] md:p-10">
+      <div className="rounded-[2.5rem] bg-surface-dark/80 p-7 backdrop-blur-[1.5px] md:p-10">
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
             <label htmlFor="serviceType" className="text-sm font-medium text-[#FAFAFA]">
@@ -74,7 +74,7 @@ export default function ServiceQuoteForm({ serviceSlug, serviceTitle }: ServiceQ
               value={serviceTitle}
               readOnly
               disabled
-              className="w-full rounded-2xl border border-transparent bg-[#FAFAFA]/9 px-5 py-3.5 text-sm text-[#FAFAFA] opacity-80 outline-none"
+              className="w-full rounded-2xl border border-transparent bg-surface/9 px-5 py-3.5 text-sm text-[#FAFAFA] opacity-80 outline-none"
             />
           </div>
 
@@ -92,7 +92,7 @@ export default function ServiceQuoteForm({ serviceSlug, serviceTitle }: ServiceQ
                 onChange={(event) => setName(event.target.value)}
                 placeholder="Your name"
                 disabled={status === 'loading'}
-                className="w-full rounded-2xl border border-transparent bg-[#FAFAFA]/9 px-5 py-3.5 text-sm text-[#FAFAFA] placeholder-[#c4c4c4] outline-none transition-colors hover:border-[#6958cc] focus:border-[#c4c4c480] disabled:opacity-60"
+                className="w-full rounded-2xl border border-transparent bg-surface/9 px-5 py-3.5 text-sm text-[#FAFAFA] placeholder-[#c4c4c4] outline-none transition-colors hover:border-primary focus:border-[#c4c4c480] disabled:opacity-60"
               />
             </div>
 
@@ -109,7 +109,7 @@ export default function ServiceQuoteForm({ serviceSlug, serviceTitle }: ServiceQ
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder="you@example.com"
                 disabled={status === 'loading'}
-                className="w-full rounded-2xl border border-transparent bg-[#FAFAFA]/9 px-5 py-3.5 text-sm text-[#FAFAFA] placeholder-[#c4c4c4] outline-none transition-colors hover:border-[#6958cc] focus:border-[#c4c4c480] disabled:opacity-60"
+                className="w-full rounded-2xl border border-transparent bg-surface/9 px-5 py-3.5 text-sm text-[#FAFAFA] placeholder-[#c4c4c4] outline-none transition-colors hover:border-primary focus:border-[#c4c4c480] disabled:opacity-60"
               />
             </div>
           </div>
@@ -127,14 +127,14 @@ export default function ServiceQuoteForm({ serviceSlug, serviceTitle }: ServiceQ
               onChange={(event) => setCustomInstructions(event.target.value)}
               placeholder="Tell us about your project and what you need..."
               disabled={status === 'loading'}
-              className="px-10 w-full resize-none rounded-2xl border border-transparent bg-[#FAFAFA]/9 px-5 py-3.5 text-sm text-[#FAFAFA] placeholder-[#c4c4c4] outline-none transition-colors hover:border-[#6958cc] focus:border-[#c4c4c480] disabled:opacity-60"
+              className="px-10 w-full resize-none rounded-2xl border border-transparent bg-surface/9 px-5 py-3.5 text-sm text-[#FAFAFA] placeholder-[#c4c4c4] outline-none transition-colors hover:border-primary focus:border-[#c4c4c480] disabled:opacity-60"
             />
           </div>
 
           <button
             type="submit"
             disabled={status === 'loading'}
-            className="mt-2 inline-flex items-center justify-center gap-3 self-start rounded-full bg-gradient-to-br from-[#7d64c5] to-[#5a4b99] px-7 py-3.5 text-sm font-semibold text-[#FAFAFA] transition-colors hover:bg-[#433b7b] hover:bg-none disabled:opacity-60"
+            className="mt-2 inline-flex items-center justify-center gap-3 self-start rounded-full bg-gradient-to-br from-primary-light to-primary-dark px-7 py-3.5 text-sm font-semibold text-[#FAFAFA] transition-colors hover:bg-dark hover:bg-none disabled:opacity-60"
           >
             {status === 'loading' ? 'Sending...' : 'Request a quotation'}
             <Send className="h-4 w-4" />

@@ -82,7 +82,11 @@ export default function Hero() {
       <div className="intro_layers relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-9 text-center">
         <motion.div
           {...fadeUp}
-          transition={{ duration: 0.6 }}
+          // transition={{ duration: 0.6 }}
+          whileHover={{ 
+              scale: 1.2,
+            }}
+          transition={{ type: "spring", stiffness: 400, damping: 70,  duration: 0.6 }}
           className="flex flex-wrap items-center justify-center gap-4"
         >
           <div className="flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2">
@@ -94,7 +98,7 @@ export default function Hero() {
             {[0, 1, 2].map((i) => (
               <div
                 key={i}
-                className="h-8 w-8 rounded-full border-2 border-base bg-gradient-to-br from-[#7d64c5] to-[#5a4b99]"
+                className="h-8 w-8 rounded-full border-2 border-base bg-gradient-to-br from-primary-light to-primary-dark"
               />
             ))}
           </div>
@@ -102,7 +106,7 @@ export default function Hero() {
           <div className="flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-sm font-medium text-body">
             <Users className="h-4 w-4" />
             <span>
-              <span className="bg-gradient-to-r from-[#7d64c5] to-[#5a4b99] bg-clip-text font-semibold text-transparent">
+              <span className="bg-gradient-to-r from-primary-light to-primary-dark bg-clip-text font-semibold text-transparent">
                 1,000+{' '}
               </span>
               satisfied clients
@@ -112,7 +116,11 @@ export default function Hero() {
 
         <motion.h1
           {...fadeUp}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          // transition={{ duration: 0.6, delay: 0.1 }}
+          whileHover={{ 
+              scale: 1.2,
+            }}
+          transition={{ type: "spring", stiffness: 400, damping: 70,  duration: 0.6, delay: 0.1 }}
           className="text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
         >
           Scale your brand with unlimited design
@@ -121,7 +129,7 @@ export default function Hero() {
         <motion.p
           {...fadeUp}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-xl text-base leading-relaxed text-body md:text-lg"
+          className="max-w-xl text-white leading-relaxed text-body md:text-lg"
         >
           Unlock endless creative possibilities and keep your brand growing with
           on-demand, high-quality design solutions tailored to your vision.
@@ -130,7 +138,7 @@ export default function Hero() {
         <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.3 }}>
           <a
             href="#Email"
-            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-br from-[#7d64c5] to-[#5a4b99] px-7 py-4 text-sm font-semibold text-[#FAFAFA] transition-colors hover:bg-[#433b7b] hover:bg-none"
+            className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-br from-primary-light to-primary-dark px-7 py-4 text-sm font-semibold text-[#FAFAFA] transition-colors hover:bg-dark hover:bg-none"
           >
             Get started
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -156,7 +164,7 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        <div className="relative z-10 rounded-[2.5rem] bg-linear-to-br from-[#1b1a21] to-[#5a4b99] p-3">
+        <div className="relative z-10 rounded-[2.5rem] bg-linear-to-br from-dark-background to-primary-dark p-3">
           <Image
             src="https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e3670d695bceafcafb82b6_ee7f5d47945ea67f4340bae30affb453_Vector%201.svg"
             alt=""
@@ -196,7 +204,7 @@ export default function Hero() {
                     type="button"
                     onClick={handlePauseClick}
                     aria-label="Pause showreel"
-                    className="absolute z-20 flex h-16 w-16 items-center justify-center rounded-full bg-[#FAFAFA] text-heading transition-all hover:scale-105 focus:outline-none"
+                    className="absolute z-20 flex h-16 w-16 items-center justify-center rounded-full bg-surface text-heading transition-all hover:scale-105 focus:outline-none"
                   >
                     <Pause className="h-6 w-6 fill-current" />
                   </button>
@@ -216,7 +224,7 @@ export default function Hero() {
                   type="button"
                   onClick={handlePlayClick}
                   aria-label="Play showreel"
-                  className="relative z-20 flex h-16 w-16 items-center justify-center rounded-full bg-[#FAFAFA] text-heading transition-transform hover:scale-105 focus:outline-none"
+                  className="relative z-20 flex h-16 w-16 items-center justify-center rounded-full bg-surface text-heading transition-transform hover:scale-105 focus:outline-none"
                 >
                   <Play className="h-6 w-6 fill-current" />
                 </button>

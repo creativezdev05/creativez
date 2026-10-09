@@ -109,8 +109,8 @@ export default function OurSpecialities() {
             className="flex items-center gap-3"
           >
             <span className="relative flex h-3 w-3">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-linear-to-r from-[#7d64c5] to-[#5a4b99] opacity-75" />
-              <span className="relative inline-flex h-3 w-3 rounded-full bg-linear-to-r from-[#7d64c5] to-[#5a4b99]" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-linear-to-r from-primary-light to-primary-dark opacity-75" />
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-linear-to-r from-primary-light to-primary-dark" />
             </span>
             <span className="text-lg font-medium text-heading">Our Specialities</span>
           </motion.div>
@@ -135,7 +135,7 @@ export default function OurSpecialities() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative flex min-h-[460px] flex-col justify-between gap-10 overflow-hidden rounded-[2.5rem] bg-[#FAFAFA] p-8 md:flex-row md:items-center md:p-14"
+              className="relative flex min-h-[460px] flex-col justify-between gap-10 overflow-hidden rounded-[2.5rem] bg-surface p-8 md:flex-row md:items-center md:p-14"
             >
               <Image
                 src="https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e3a85f9ef6b3ffe52e3d2e_Vector%202%20(1).webp"
@@ -178,7 +178,7 @@ export default function OurSpecialities() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="relative flex flex-col justify-between gap-10 overflow-hidden rounded-[2.5rem] bg-linear-to-br from-[#7d64c5] to-[#5a4b99] p-8 md:p-14"
+              className="relative flex flex-col justify-between gap-10 overflow-hidden rounded-[2.5rem] bg-linear-to-br from-primary-light to-primary-dark p-8 md:p-14"
             >
               <Image
                 src="https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e3a90e84b81b16ec5dc613_Vector%203%20(2).webp"
@@ -211,7 +211,7 @@ export default function OurSpecialities() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="flex flex-col justify-between gap-10 rounded-[2.5rem] bg-linear-to-br from-[#7d64c5] to-[#5a4b99] p-8 md:p-14"
+              className="flex flex-col justify-between gap-10 rounded-[2.5rem] bg-linear-to-br from-primary-light to-primary-dark p-8 md:p-14"
             >
               <div className="flex flex-col gap-2">
                 <StatCounter
@@ -244,12 +244,12 @@ export default function OurSpecialities() {
                 className="pointer-events-none absolute inset-0 -z-10 object-cover opacity-60"
               />
 
-              <div className="relative z-10 flex items-center gap-3 rounded-full bg-[#FAFAFA]/10 px-5 py-3 backdrop-blur-sm">
+              <div className="relative z-10 flex items-center gap-3 rounded-full bg-surface/10 px-5 py-3 backdrop-blur-sm">
                 <LayoutGrid className="h-5 w-5 text-[#FAFAFA]" />
                 <p className="text-sm text-[#FAFAFA]">A variety of features</p>
               </div>
 
-              <div className="absolute inset-x-0 top-[22%] h-px bg-linear-to-r from-[#b6bece] to-[#FAFAFA] opacity-80" />
+              <div className="absolute inset-x-0 top-[22%] h-px bg-linear-to-r from-divider-light to-surface opacity-80" />
 
               <div className="relative h-full min-h-[460px] md:min-h-[320px]">
                 {capsules.map((capsule, index) => (
@@ -264,7 +264,7 @@ export default function OurSpecialities() {
                       type: 'spring',
                       bounce: 0.45,
                     }}
-                    className={`absolute flex items-center gap-1 rounded-full bg-[#6958cc] px-3 py-2 md:gap-1.5 md:px-4 md:py-2.5 ${capsule.className}`}
+                    className={`absolute flex items-center gap-1 rounded-full bg-primary px-3 py-2 md:gap-1.5 md:px-4 md:py-2.5 ${capsule.className}`}
                   >
                     <Check className="h-3 w-3 flex-none text-[#FAFAFA] md:h-3.5 md:w-3.5" />
                     <span className="text-xs whitespace-nowrap text-[#FAFAFA] md:text-sm">

@@ -63,7 +63,7 @@ export default function Services() {
           items={brandWords}
           direction="left"
           rotation="-rotate-3"
-          className="col-start-1 row-start-1 bg-gradient-to-br from-[#7d64c5] to-[#5a4b99]"
+          className="col-start-1 row-start-1 bg-gradient-to-br from-primary-light to-primary-dark"
         />
         <MarqueeRow
           items={statsWords}

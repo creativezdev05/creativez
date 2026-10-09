@@ -20,25 +20,33 @@ function getAdminApp() {
 
 const db = getFirestore(getAdminApp());
 
-const imageRectangle6 =
-  'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e4d3727754a626967e9649_Rectangle%206%20(2).webp';
-const imageRectangle7 =
-  'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e311939a3536f1e22384a5_Rectangle%207.webp';
-const imageRectangle8 =
-  'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e311931063d09a3e654980_Rectangle%208.webp';
-const imageMaskGroup1 =
-  'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e31193c2e072fddfcfd6c2_Mask%20group%20(1).webp';
+const gameDevelopmentThumb = '/images/services/game-development-thumb.png';
+const gameDevelopmentHero = '/images/services/game-development.png';
+const threeDThumb = '/images/services/3d-thumb.png';
+const threeDHero = '/images/services/3d.png';
+const websiteDevelopmentThumb = '/images/services/website-development-thumb.png';
+const websiteDevelopmentHero = '/images/services/website-development.png';
+const strategicBrandingThumb = '/images/services/str-brand-thumb.png';
+const strategicBrandingHero = '/images/services/str-brand.png';
+const uiUxThumb = '/images/services/ui-ux-thumb.png';
+const uiUxHero = '/images/services/ui-ux.png';
+const aiContentThumb = '/images/services/ai-creative-thumb.png';
+const aiContentHero = '/images/services/ai-creative.png';
+const generativeAiThumb = '/images/services/generative-ai-thumb.png';
+const generativeAiHero = '/images/services/generative-ai.png';
+const digitalMarketingThumb = '/images/services/digital-marketing-thumb.png';
+const digitalMarketingHero = '/images/services/digital-marketing.png';
 
 const services = [
   {
     slug: 'game-development',
     title: 'Game Development',
     order: 1,
-    thumbnail: imageMaskGroup1,
+    thumbnail: gameDevelopmentThumb,
     description:
       'End-to-end game design and development across mobile, PC and console platforms.',
     detail: {
-      heroImage: imageMaskGroup1,
+      heroImage: gameDevelopmentHero,
       heading: 'Build immersive games players love',
       tags: ['Game Design', '2D/3D Development', 'Unity & Unreal', 'Multiplayer'],
       whatIncludes: [
@@ -82,11 +90,11 @@ const services = [
     slug: '3d-modeling-animations',
     title: '3D Modeling Animations',
     order: 2,
-    thumbnail: imageRectangle7,
+    thumbnail: threeDThumb,
     description:
       'High-quality 3D models, renders and animations for products, characters and environments.',
     detail: {
-      heroImage: imageRectangle7,
+      heroImage: threeDHero,
       heading: 'Bring your ideas to life in 3D',
       tags: ['3D Modeling', 'Character Design', 'Rendering', 'Animation'],
       whatIncludes: [
@@ -130,10 +138,10 @@ const services = [
     slug: 'website-development',
     title: 'Website Development',
     order: 3,
-    thumbnail: imageRectangle8,
+    thumbnail: websiteDevelopmentThumb,
     description: 'Fast, responsive websites and web apps built to convert.',
     detail: {
-      heroImage: imageRectangle8,
+      heroImage: websiteDevelopmentHero,
       heading: 'Websites that perform as good as they look',
       tags: ['Web Design', 'Frontend Development', 'CMS Integration', 'Performance Optimization'],
       whatIncludes: [
@@ -177,10 +185,10 @@ const services = [
     slug: 'strategic-branding',
     title: 'Strategic Branding',
     order: 4,
-    thumbnail: imageRectangle6,
+    thumbnail: strategicBrandingThumb,
     description: 'Brand strategy, identity and guidelines that make you memorable.',
     detail: {
-      heroImage: imageRectangle6,
+      heroImage: strategicBrandingHero,
       heading: 'Build a brand people remember',
       tags: ['Brand Strategy', 'Logo Design', 'Brand Guidelines', 'Identity Systems'],
       whatIncludes: [
@@ -224,10 +232,10 @@ const services = [
     slug: 'ui-ux-design',
     title: 'UI/UX Design',
     order: 5,
-    thumbnail: imageRectangle8,
+    thumbnail: uiUxThumb,
     description: 'User research, UI design and prototypes that make products easy to use.',
     detail: {
-      heroImage: imageRectangle8,
+      heroImage: uiUxHero,
       heading: 'Design experiences users love',
       tags: ['UI Design', 'UX Research', 'Prototyping', 'Design Systems'],
       whatIncludes: [
@@ -271,10 +279,10 @@ const services = [
     slug: 'ai-content-creation',
     title: 'AI Content Creation',
     order: 6,
-    thumbnail: imageMaskGroup1,
+    thumbnail: aiContentThumb,
     description: 'AI-assisted copy, imagery and video content tailored to your brand voice.',
     detail: {
-      heroImage: imageMaskGroup1,
+      heroImage: aiContentHero,
       heading: 'Create content faster with AI',
       tags: ['AI Copywriting', 'AI Image Generation', 'Content Strategy', 'Brand Voice'],
       whatIncludes: [
@@ -318,10 +326,10 @@ const services = [
     slug: 'generative-ai',
     title: 'Generative AI',
     order: 7,
-    thumbnail: imageRectangle7,
+    thumbnail: generativeAiThumb,
     description: 'Custom generative AI tools, models and integrations for your product.',
     detail: {
-      heroImage: imageRectangle7,
+      heroImage: generativeAiHero,
       heading: 'Ship generative AI features with confidence',
       tags: ['LLM Integration', 'Custom AI Models', 'AI Automation', 'Prompt Engineering'],
       whatIncludes: [
@@ -365,10 +373,10 @@ const services = [
     slug: 'digital-marketing',
     title: 'Digital Marketing',
     order: 8,
-    thumbnail: imageRectangle7,
+    thumbnail: digitalMarketingThumb,
     description: 'SEO, paid ads and social media management that grows your audience.',
     detail: {
-      heroImage: imageRectangle7,
+      heroImage: digitalMarketingHero,
       heading: 'Grow your reach with data-driven marketing',
       tags: ['SEO', 'Paid Ads', 'Social Media', 'Content Strategy'],
       whatIncludes: [

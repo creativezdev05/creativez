@@ -40,20 +40,21 @@ export default async function ServicesPage() {
             <Link
               key={service.slug}
               href={`/services/${service.slug}`}
-              className="group flex flex-col overflow-hidden rounded-[2rem] border border-[#6958cc]/15 bg-[#FAFAFA]/40 transition-shadow hover:shadow-lg"
+              className="group flex flex-col overflow-hidden rounded-[2rem] border border-primary/15 bg-surface/40 transition-shadow hover:shadow-lg"
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Image
                   src={service.thumbnail}
                   alt={service.title}
                   fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
               <div className="flex flex-1 flex-col gap-3 p-6">
                 <h2 className="text-xl font-semibold text-heading">{service.title}</h2>
                 <p className="flex-1 text-sm leading-relaxed text-body">{service.description}</p>
-                <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#5a4b99]">
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary-dark">
                   View detail
                   <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </span>

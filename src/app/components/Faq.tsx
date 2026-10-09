@@ -22,14 +22,14 @@ function FaqCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: (index % 4) * 0.1 }}
-      className="cursor-pointer rounded-[1.625rem] border border-transparent bg-[#FAFAFA] pb-8 transition-colors hover:border-[#cccce7]"
+      className="cursor-pointer rounded-[1.625rem] border border-transparent bg-surface pb-8 transition-colors hover:border-[#cccce7]"
       onClick={onToggle}
     >
       <div className="flex items-center justify-between gap-6 px-8 pt-8">
         <span className="text-lg font-semibold text-[#3d4048]">
           {index + 1}. {item.question}
         </span>
-        <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-gradient-to-br from-[#7d64c5] to-[#5a4b99]">
+        <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-gradient-to-br from-primary-light to-primary-dark">
           <motion.span
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.3 }}
@@ -75,14 +75,14 @@ export default function Faq({ faqs }: { faqs: FaqItem[] }) {
             className="flex items-center gap-3"
           >
             <span className="relative flex h-3 w-3">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-linear-to-r from-[#7d64c5] to-[#5a4b99] opacity-75" />
-              <span className="relative inline-flex h-3 w-3 rounded-full bg-linear-to-r from-[#7d64c5] to-[#5a4b99]" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-linear-to-r from-primary-light to-primary-dark opacity-75" />
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-linear-to-r from-primary-light to-primary-dark" />
             </span>
             <span className="text-lg font-medium text-heading">FAQ</span>
           </motion.div>
-
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
+            whileHover={{  scaleX: 1.2 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}

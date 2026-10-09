@@ -2,9 +2,12 @@
 
 :root {
   /* === Colors === */
-  --color-base: #eaeaf3;
-  --color-dark-background: #1b1a21;
-  --color-black-gradient: #1c1b22;
+  --color-base: #c7d6e2;
+  /* --color-base: #c7d6e2; */
+  /* --color-dark-background: #1b1a21; */
+  /* --color-black-gradient: #1c1b22; */
+  --color-dark-background: #022D49;
+  --color-black-gradient: #022D49;
 
   --color-card-bg: #ffffff17;
   --color-card-bg-solid: #ffffff;
@@ -14,12 +17,19 @@
   --color-white: #ffffff;
   --color-black: #000000;
 
-  --color-primary: #6958cc;
-  --color-primary-dark: #5a4b99;
-  --color-primary-light: #7d64c5;
-  --color-dark: #433b7b;
-  --color-gradient: #433b7b;
-  --color-gradient-transparent: #433b7b00;
+  /* --color-primary: #6958cc; */
+  /* --color-primary-dark: #5a4b99; */
+  /* --color-primary-light: #7d64c5; */
+  --color-primary: #0786db;
+  --color-primary-dark: #0152bc;
+  --color-primary-light: #0cb9f9;
+
+  /* --color-dark: #433b7b; */
+  /* --color-gradient: #433b7b; */
+  /* --color-gradient-transparent: #433b7b00; */
+  --color-dark: #013a82;
+  --color-gradient: #013a82;
+  --color-gradient-transparent: #013a8200;
   --color-light-sky: #9ec3f6;
 
   --color-border: #d1d1e3;
@@ -28,6 +38,17 @@
   --color-border-muted: #c4c4c480;
   --color-border-white: #ffffff4d;
   --color-transparent: transparent;
+
+  --color-surface: #fafafa;
+  --color-surface-dark: #171618;
+  --color-nav: #0d0d0d;
+  --color-nav-item: #141414;
+  --color-footer-card: #444649;
+  --color-divider: #606776;
+  --color-divider-light: #b6bece;
+
+  /* === Gradients === */
+  --gradient-hero: linear-gradient(223deg, var(--color-dark-background) 66.8%, var(--color-primary-dark));
 
   /* === Typography === */
   --font-heading: var(--font-syne), Arial, sans-serif;
@@ -77,9 +98,10 @@
 
   /* === Shadows === */
   --shadow-card: 0 10px 23px #3b41481a, 0 256px 72px #3b414800, 0 164px 66px #3b414803, 0 92px 55px #3b41480d, 0 41px 41px #3b414817;
-  --shadow-dark-sm: 0 6px 13px #1b1a211a, 0 23px 23px #1b1a2117, 0 53px 32px #1b1a210d, 0 94px 37px #1b1a2103;
-  --shadow-dark-lg: 0 4px 4px #1b1a211a, 0 15px 15px #1b1a2117, 0 33px 20px #1b1a210d, 0 59px 24px #1b1a2103, 0 93px 26px #1b1a2100;
-  --shadow-glow: 0 0 48px #c354e55e, 0 25px 48px #e8ff590a;
+  --shadow-dark-sm: 0 6px 13px #191c211a, 0 23px 23px #191c2117, 0 53px 32px #191c210d, 0 94px 37px #191c2103;
+  --shadow-dark-lg: 0 4px 4px #191c211a, 0 15px 15px #191c2117, 0 33px 20px #191c210d, 0 59px 24px #191c2103, 0 93px 26px #191c2100;
+  /* --shadow-glow: 0 0 48px #c354e55e, 0 25px 48px #e8ff590a; */
+  --shadow-glow: 0 0 48px #0cb9f95e, 0 25px 48px #e8ff590a;
   --shadow-focus: 0 2px 5px #f1faff;
 
   /* === Backdrop Blur === */
@@ -109,6 +131,14 @@
   --color-border-muted: var(--color-border-muted);
   --color-border-white: var(--color-border-white);
 
+  --color-surface: var(--color-surface);
+  --color-surface-dark: var(--color-surface-dark);
+  --color-nav: var(--color-nav);
+  --color-nav-item: var(--color-nav-item);
+  --color-footer-card: var(--color-footer-card);
+  --color-divider: var(--color-divider);
+  --color-divider-light: var(--color-divider-light);
+
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);
 
@@ -130,6 +160,16 @@
 @layer base {
   body {
     background-color: var(--color-base);
+    background-image: linear-gradient(
+      120deg,
+      var(--color-white),
+      var(--color-base),
+      var(--color-light-sky),
+      var(--color-base),
+      var(--color-white)
+    );
+    background-size: 300% 300%;
+    animation: gradient-shift 10s ease infinite;
     color: var(--color-body);
     font-family: var(--font-body);
     overflow-x: hidden;
@@ -154,6 +194,19 @@
     font-size: var(--text-p1);
     line-height: var(--leading-normal);
     font-weight: var(--font-weight-medium);
+  }
+}
+
+/* Animated body gradient */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
   }
 }
 
@@ -212,7 +265,7 @@
   animation: marquee-vertical 40s linear infinite;
 }
 .intro_layers {
-    background-image: linear-gradient(223deg, #1b1a21 66.8%, #5a4b99);
+    background-image: var(--gradient-hero);
     display: flex;
     flex-direction: column;
     justify-content: center;

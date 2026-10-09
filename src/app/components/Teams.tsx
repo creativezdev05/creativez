@@ -21,10 +21,10 @@ interface TeamMember {
 }
 
 const ceoData: CeoMember = {
-  name: 'Brooklyn Simmons',
+  name: 'Shanza Khan',
   role: 'Chief Executive Officer',
   image:
-    'https://cdn.prod.website-files.com/6597ccea909e42269476248f/6908709073f66bd3b01c5c89_5aee66678438f96b24e31240e79530b7_Professional%20Man%20in%20Suit%201.webp',
+    '/images/ceo/ceo.png',
   alt: 'Smiling professional man in a navy blazer and light blue shirt with arms crossed.',
   quote:
     'Innovation and design excellence drive everything we build. Our mission is to transform bold ideas into seamless digital experiences.',
@@ -55,6 +55,14 @@ const team: TeamMember[] = [
   },
 ];
 
+function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM3.558 20.452h3.56V9h-3.56v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
 function TeamCard({ member, index }: { member: TeamMember; index: number }) {
   return (
     <motion.div
@@ -64,7 +72,7 @@ function TeamCard({ member, index }: { member: TeamMember; index: number }) {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="group flex flex-col"
     >
-      <div className="relative aspect-3/4 w-full overflow-hidden rounded-[2.5rem] bg-[#6958cc]">
+      <div className="relative aspect-3/4 w-full overflow-hidden rounded-[2.5rem] bg-primary">
         <Image src={member.image} alt={member.alt} fill className="object-cover" />
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
@@ -75,18 +83,18 @@ function TeamCard({ member, index }: { member: TeamMember; index: number }) {
             target="_blank"
             rel="noreferrer"
             aria-label={`${member.name} on X`}
-            className="flex h-13 w-13 items-center justify-center rounded-[0.6875rem] bg-[#FAFAFA] text-heading transition-transform hover:scale-105"
+            className="flex h-13 w-13 items-center justify-center rounded-[0.6875rem] bg-surface text-heading transition-transform hover:scale-105"
           >
             <X className="h-5 w-5" />
           </a>
           <a
-            href="https://www.instagram.com/"
+            href="https://www.linkedin.com/in/shanza-khan-40489b21a/"
             target="_blank"
             rel="noreferrer"
-            aria-label={`${member.name} on Instagram`}
-            className="flex h-13 w-13 items-center justify-center rounded-[0.6875rem] bg-[#FAFAFA] text-heading transition-transform hover:scale-105"
+            aria-label={`${member.name} on LinkedIn`}
+            className="flex h-13 w-13 items-center justify-center rounded-[0.6875rem] bg-surface text-heading transition-transform hover:scale-105"
           >
-            <Camera className="h-5 w-5" />
+            <LinkedinIcon className="h-5 w-5" />
           </a>
         </div>
       </div>
@@ -101,7 +109,7 @@ function TeamCard({ member, index }: { member: TeamMember; index: number }) {
 
 export default function Teams() {
   return (
-    <section className="px-6 py-20 md:py-28">
+    <section className="px-4 py-10 md:py-14">
       <div className="mx-auto max-w-[1500px]">
         {/* Section Header */}
         {/* <motion.h2
@@ -123,14 +131,20 @@ export default function Teams() {
           className="mb-24 grid grid-cols-1 items-center gap-10 rounded-[3rem] bg-gray-50/50 p-6 md:grid-cols-12 md:p-12 lg:gap-16"
         >
           {/* Left Column: CEO Image */}
-          <div className="relative aspect-3/4 w-full overflow-hidden rounded-[2.5rem] bg-[#6958cc] md:col-span-5 lg:col-span-5">
-            <Image
-              src={ceoData.image}
-              alt={ceoData.alt}
-              fill
-              className="object-cover"
-              priority
-            />
+          <div className="relative aspect-3/4 w-full overflow-hidden rounded-[2.5rem] bg-primary md:col-span-5 lg:col-span-5">
+            <motion.div
+              className="relative h-full w-full"
+              whileHover={{ scale: 1.2 }}
+              transition={{ type: "spring", stiffness: 400, damping: 70 }}
+            >
+              <Image
+                src={ceoData.image}
+                alt={ceoData.alt}
+                fill
+                className="object-cover"
+                priority
+              />
+            </motion.div>
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
             <div className="absolute bottom-8 left-8 right-8 flex items-center gap-3">
               <a
@@ -138,25 +152,25 @@ export default function Teams() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`${ceoData.name} on X`}
-                className="flex h-12 w-12 items-center justify-center rounded-[0.6875rem] bg-[#FAFAFA] text-heading transition-transform hover:scale-105"
+                className="flex h-12 w-12 items-center justify-center rounded-[0.6875rem] bg-surface text-heading transition-transform hover:scale-105"
               >
                 <X className="h-5 w-5" />
               </a>
               <a
-                href="https://www.instagram.com/"
+                href="https://www.linkedin.com/in/shanza-khan-40489b21a/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`${ceoData.name} on Instagram`}
-                className="flex h-12 w-12 items-center justify-center rounded-[0.6875rem] bg-[#FAFAFA] text-heading transition-transform hover:scale-105"
+                className="flex h-12 w-12 items-center justify-center rounded-[0.6875rem] bg-surface text-heading transition-transform hover:scale-105"
               >
-                <Camera className="h-5 w-5" />
+                <LinkedinIcon className="h-5 w-5" />
               </a>
             </div>
           </div>
 
           {/* Right Column: Title & Description */}
           <div className="flex flex-col justify-center space-y-6 md:col-span-7 lg:col-span-7">
-            <div className="inline-flex items-center gap-2 rounded-full bg-purple-100 px-4 py-1.5 text-sm font-medium text-[#6958cc] w-fit">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary w-fit">
               <Quote className="h-4 w-4" />
               <span>Leadership Insight</span>
             </div>
@@ -165,7 +179,7 @@ export default function Teams() {
               What Our CEO Says
             </h3>
 
-            <blockquote className="border-l-4 border-[#6958cc] pl-4 text-xl font-medium italic text-heading md:text-2xl">
+            <blockquote className="border-l-4 border-primary pl-4 text-xl font-medium italic text-heading md:text-2xl">
               &ldquo;{ceoData.quote}&rdquo;
             </blockquote>
 

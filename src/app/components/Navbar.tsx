@@ -74,7 +74,7 @@ export default function Navbar() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="fixed inset-x-0 top-0 z-50 border-b border-[#262626] bg-[#0D0D0D]/80 backdrop-blur-md"
+      className="fixed inset-x-0 top-0 z-50 border-b border-[#262626] bg-nav/80 backdrop-blur-md"
     >
       <div className="mx-auto flex max-w-[1500px] items-center justify-between px-6 py-4">
         <a
@@ -107,7 +107,7 @@ export default function Navbar() {
             >
               {link.label}
               <span
-                className={`absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-[#7d64c5] to-[#5a4b99] transition-transform duration-300 ${
+                className={`absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-primary-light to-primary-dark transition-transform duration-300 ${
                   active === link.label ? 'scale-x-100' : 'group-hover:scale-x-100'
                 }`}
               />
@@ -118,7 +118,7 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <Link
             href="/contact"
-            className="hidden rounded-full bg-gradient-to-br from-[#7d64c5] to-[#5a4b99] px-5 py-2.5 text-sm font-semibold text-[#FAFAFA] transition-colors hover:bg-[#433b7b] hover:bg-none md:inline-flex"
+            className="hidden rounded-full bg-gradient-to-br from-primary-light to-primary-dark px-5 py-2.5 text-sm font-semibold text-[#FAFAFA] transition-colors hover:bg-dark hover:bg-none md:inline-flex"
           >
             Get In Touch
           </Link>
@@ -151,8 +151,8 @@ export default function Navbar() {
                   onClick={(e) => handleNavClick(e, link)}
                   className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                     active === link.label
-                      ? 'bg-[#141414] text-[#FAFAFA]'
-                      : 'text-[#A1A1AA] hover:bg-[#141414] hover:text-[#FAFAFA]'
+                      ? 'bg-nav-item text-[#FAFAFA]'
+                      : 'text-[#A1A1AA] hover:bg-nav-item hover:text-[#FAFAFA]'
                   }`}
                 >
                   {link.label}
@@ -161,7 +161,7 @@ export default function Navbar() {
               <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}
-                className="mt-2 rounded-full bg-gradient-to-br from-[#7d64c5] to-[#5a4b99] px-5 py-2.5 text-center text-sm font-semibold text-[#FAFAFA]"
+                className="mt-2 rounded-full bg-gradient-to-br from-primary-light to-primary-dark px-5 py-2.5 text-center text-sm font-semibold text-[#FAFAFA]"
               >
                 Get In Touch
               </Link>
