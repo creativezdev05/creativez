@@ -17,6 +17,7 @@ export interface Service {
   title: string;
   order: number;
   thumbnail: string;
+  featureThumbnail: string;
   description: string;
   detail: ServiceDetail;
 }
