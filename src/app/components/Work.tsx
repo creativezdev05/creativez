@@ -61,7 +61,7 @@ const works: WorkItem[] = [
     number: '04',
     title: 'Creative Web Engineering',
     description: 'Architecting ultra-fast web platforms with fluid animations, dynamic routing, and seamless design integration.',
-    image: '/images/work/home-service-ui-ux.png',
+    image: '/images/website-portfolio/Capture.png',
     overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb9272cdd440a88de8dc_Mask%20group%20(22).webp',
     services: ['Front-End Performance', 'Custom Shader & SVG Effects', 'Headless System Architecture'],
     stats: [
@@ -73,7 +73,7 @@ const works: WorkItem[] = [
     number: '05',
     title: 'Virtual & Augmented Realities',
     description: 'Building next-generation spatial computing experiences for immersive training, gaming, and digital interaction.',
-    image: '/images/work/1.png',
+    image: '/images/work/aug-realities.png',
     overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e4a2925d514ce9fea6d828_Mask%20group%20(7).webp',
     services: ['XR Interaction Design', 'Spatial Audio & Haptics', 'Cross-Platform VR Deployment'],
     stats: [
@@ -175,7 +175,7 @@ function WorkCard({
           <ArrowUpRight className="h-5 w-5" />
         </button>
 
-        <div className="relative z-10 grid grid-cols-1 gap-8 lg:grid-cols-[0.35fr_0.75fr_0.35fr] lg:gap-16">
+        <div className="relative z-10 grid grid-cols-1 gap-6 lg:grid-cols-[0.35fr_0.75fr_0.35fr] lg:gap-8">
           <div className="flex flex-col justify-between gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -188,7 +188,7 @@ function WorkCard({
                 <span className="h-3 w-3 rounded-full bg-gradient-to-r from-primary-light to-primary-dark" />
                 <span className="text-sm font-semibold text-[#A1A1AA]">{item.number}</span>
               </div>
-              <h3 className="text-left text-2xl font-semibold text-[#FAFAFA] md:text-3xl">
+              <h3 className="text-shimmer text-left text-2xl font-semibold text-[#FAFAFA] md:text-3xl">
                 {item.title}
               </h3>
             </motion.div>
@@ -273,7 +273,7 @@ export default function Work() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center text-5xl font-semibold text-heading md:text-7xl"
+          className="text-shimmer-dark mb-16 text-center text-5xl font-semibold text-heading md:text-7xl"
         >
           Recent Works
         </motion.h2>

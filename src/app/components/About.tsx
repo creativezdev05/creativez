@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import TypedText from './TypedText';
 
 interface Stat {
   target: number;
@@ -50,6 +51,7 @@ function StatCounter({ target, decimals, suffix, label, delay }: Stat & { delay:
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ scale: 1.10, transition: { duration: 0.3 }, cursor: 'pointer', }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay }}
       className="flex flex-col items-start gap-2"
@@ -82,17 +84,19 @@ export default function About() {
             <span className="text-lg font-medium text-heading">Introduction</span>
           </motion.div>
 
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-left text-2xl leading-relaxed font-medium text-heading md:text-3xl lg:text-4xl"
+            className=""
           >
-            We&apos;re a creative agency driven by design, strategy, and storytelling. Our
+            {/* We&apos;re a creative agency driven by design, strategy, and storytelling. Our
             mission is to help brands stand out through bold ideas, thoughtful design, and
-            impactful digital experiences.
-          </motion.h2>
+            impactful digital experiences. */}
+            <TypedText textStr={`We're a creative agency driven by design, strategy, and storytelling. Our
+            mission is to help brands stand out through bold ideas, thoughtful design, and impactful digital experiences.`}/>
+          </motion.div>
         </div>
 
         <div className="grid grid-cols-2 gap-10 md:flex md:flex-row md:justify-between">

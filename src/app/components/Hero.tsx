@@ -121,7 +121,7 @@ export default function Hero() {
               scale: 1.2,
             }}
           transition={{ type: "spring", stiffness: 400, damping: 70,  duration: 0.6, delay: 0.1 }}
-          className="text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
+          className="text-shimmer text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
         >
           Scale your brand with unlimited design
         </motion.h1>
@@ -194,7 +194,7 @@ export default function Hero() {
               <>
                 <video
                   ref={videoRef}
-                  src="/images/hero/creativez_banner.mp4"
+                  src="/images/hero/final_combined_output.mp4"
                   onEnded={handleVideoEnded}
                   playsInline
                   className="h-full w-full object-cover"

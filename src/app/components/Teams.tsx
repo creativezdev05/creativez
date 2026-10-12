@@ -141,6 +141,7 @@ export default function Teams() {
                 src={ceoData.image}
                 alt={ceoData.alt}
                 fill
+                sizes="(min-width: 768px) 40vw, 100vw"
                 className="object-cover"
                 priority
               />
@@ -175,9 +176,15 @@ export default function Teams() {
               <span>Leadership Insight</span>
             </div>
 
-            <h3 className="text-3xl font-bold text-heading md:text-5xl">
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              whileHover={{ scale: 1.05, transition: { duration: 0.3 }, cursor: 'pointer' }}
+              className="text-shimmer-dark text-3xl font-bold text-heading md:text-5xl">
               What Our CEO Says
-            </h3>
+            </motion.h3>
 
             <blockquote className="border-l-4 border-primary pl-4 text-xl font-medium italic text-heading md:text-2xl">
               &ldquo;{ceoData.quote}&rdquo;

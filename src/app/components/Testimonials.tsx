@@ -90,7 +90,7 @@ export default function Testimonials() {
           viewport={{ once: true }}
           whileHover={{ textIndent: '-22rem' }}
           transition={{ duration: 0.6 }}
-          className="relative z-20 mb-14 text-center text-5xl font-semibold text-[#FAFAFA] md:text-7xl"
+          className="text-shimmer relative z-20 mb-14 text-center text-5xl font-semibold  md:text-7xl"
         >
           Testimonial
         </motion.h2>

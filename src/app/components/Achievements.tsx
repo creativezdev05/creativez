@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Award } from 'lucide-react';
+import { Award, Type } from 'lucide-react';
+import TypedText from './TypedText';
 
 interface Achievement {
   multiplier: string;
@@ -50,16 +51,15 @@ export default function Achievements() {
             <span className="text-lg font-medium text-heading">Achievements</span>
           </motion.div>
 
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-left text-2xl leading-relaxed font-medium text-heading md:text-3xl lg:text-4xl"
           >
-            We&apos;re honored to be recognized by industry leaders for our creativity and
-            innovation.
-          </motion.h2>
+          <TypedText textStr={`We are honored to be recognized by industry leaders for our creativity and innovation.`}/>
+          </motion.div>
         </div>
 
         <div className="flex flex-col gap-5">

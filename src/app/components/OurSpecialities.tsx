@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import { Check, LayoutGrid } from 'lucide-react';
+import TypedText from './TypedText';
 
 interface Capsule {
   label: string;
@@ -115,17 +116,16 @@ export default function OurSpecialities() {
             <span className="text-lg font-medium text-heading">Our Specialities</span>
           </motion.div>
 
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-left text-2xl leading-relaxed font-medium text-heading md:text-3xl lg:text-4xl"
+            whileHover={{ scale: 1.10, transition: { duration: 0.3 }, cursor: 'pointer', }}
           >
-            We specialize in the art of transforming vision into visual identity. With expertise
-            in branding, digital design, and creative direction, we design experiences that
-            captivate audiences.
-          </motion.h2>
+            
+            <TypedText textStr={`We specialize in the art of transforming vision into visual identity. With expertise in branding, digital design, and creative direction, we design experiences that captivate audiences.`}/>
+          </motion.div>
         </div>
 
         <div className="flex flex-col gap-8">
@@ -147,7 +147,7 @@ export default function OurSpecialities() {
               />
 
               <div className="relative z-10 flex h-full flex-col justify-between gap-10">
-                <p className="max-w-xs text-base text-[#3d4048]/70">
+                <p className="max-w-xs text-[#3d4048]/70">
                   Discover the beauty of nature in every moment. Embrace the tranquility that
                   surrounds you.
                 </p>

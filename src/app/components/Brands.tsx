@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import TypedText from './TypedText';
 
 const logoSrc =
   'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68f981769f9a7153b33c4ce6_Logo.svg';
@@ -56,16 +57,15 @@ export default function Brands() {
             <span className="text-lg font-medium text-heading">Brand Partners</span>
           </motion.div>
 
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-left text-2xl leading-relaxed font-medium text-heading md:text-3xl lg:text-4xl"
+            className=""
           >
-            We partner with innovative brands to create meaningful and enduring creative
-            experiences.
-          </motion.h2>
+            <TypedText textStr={`We partner with innovative brands to create meaningful and enduring creative experiences.`}/>
+          </motion.div>
         </div>
 
         <motion.div

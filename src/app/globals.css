@@ -2,7 +2,7 @@
 
 :root {
   /* === Colors === */
-  --color-base: #c7d6e2;
+  --color-base: #d8e1e7;
   /* --color-base: #c7d6e2; */
   /* --color-dark-background: #1b1a21; */
   /* --color-black-gradient: #1c1b22; */
@@ -30,7 +30,7 @@
   --color-dark: #013a82;
   --color-gradient: #013a82;
   --color-gradient-transparent: #013a8200;
-  --color-light-sky: #9ec3f6;
+  --color-light-sky: #bcd4f7;
 
   --color-border: #d1d1e3;
   --color-border-light: #cccce7;
@@ -208,6 +208,49 @@
   100% {
     background-position: 0% 0%;
   }
+}
+
+/* Title text color-shift: white -> light sky blue -> white, sweeping left-to-right then back */
+.text-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-white) 0%,
+    var(--color-dark-background) 100%,
+    var(--color-white) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 0% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer-flow 6s ease-in-out infinite alternate;
+}
+
+@keyframes text-shimmer-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Title text color-shift: black -> dark blue theme -> black, sweeping left-to-right then back */
+.text-shimmer-dark {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-black) 0%,
+    var(--color-primary-dark) 50%,
+    var(--color-black) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 0% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer-flow 6s ease-in-out infinite alternate;
 }
 
 /* Custom scrollbar */
