@@ -94,8 +94,7 @@ export default function About() {
             {/* We&apos;re a creative agency driven by design, strategy, and storytelling. Our
             mission is to help brands stand out through bold ideas, thoughtful design, and
             impactful digital experiences. */}
-            <TypedText textStr={`We're a creative agency driven by design, strategy, and storytelling. Our
-            mission is to help brands stand out through bold ideas, thoughtful design, and impactful digital experiences.`}/>
+            <TypedText textStr={`We're a creative agency driven by design, strategy, and storytelling. Our mission is to help brands stand out through bold ideas, thoughtful design, and impactful digital experiences.`}/>
           </motion.div>
         </div>
 

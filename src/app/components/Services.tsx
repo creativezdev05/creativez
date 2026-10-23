@@ -8,7 +8,7 @@ const brandWords = ['Strategic Branding', 'Digital Marketing', 'Print Design', '
 const statsWords = [
   'Years of experience',
   'Satisfaction service',
-  'Over 200 Customers',
+  'Over 100 Customers',
   'Strategic Branding',
   'Senior Designer',
 ];

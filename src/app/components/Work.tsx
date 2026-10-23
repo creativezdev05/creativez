@@ -4,10 +4,16 @@ import { useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
+import { TechIcon } from './techIcons';
 
 interface Stat {
   label: string;
   value: string;
+}
+
+interface TechStack {
+  technologies: string[];
+  tools: string[];
 }
 
 interface WorkItem {
@@ -17,68 +23,187 @@ interface WorkItem {
   image: string;
   overlayImage: string;
   services: string[];
+  techStack: TechStack;
   stats: Stat[];
 }
 
 const works: WorkItem[] = [
   {
     number: '01',
-    title: 'Immersive World Building',
-    description: 'Engineering interactive game mechanics, rich environments, and real-time experiences across modern engines.',
+    title: 'Interactive Game Experiences',
+    description:
+      'Designing and engineering engaging mobile and cross-platform games, combining gameplay systems, immersive environments, and polished interactive experiences.',
     image: '/images/work/1.png',
-    overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e4a2925d514ce9fea6d828_Mask%20group%20(7).webp',
-    services: ['Core Gameplay Systems', 'Spatial 3D Environments', 'Real-Time Engine Tech'],
+    overlayImage:
+      'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e4a2925d514ce9fea6d828_Mask%20group%20(7).webp',
+    services: [
+      'Mobile Game Experiences',
+      'Gameplay Systems & Mechanics',
+      '3D Environments & Game Engineering',
+    ],
+    techStack: {
+      technologies: [
+        'Unity',
+        'C#',
+        'Unreal Engine',
+        'C++',
+        'Blender',
+      ],
+      tools: [
+        'Visual Studio',
+        'VS Code',
+        'GitHub',
+        'Firebase',
+        'Photoshop',
+      ],
+    },
     stats: [
-      { label: 'Player Retention', value: '42%' },
-      { label: 'Average Session Time', value: '28m' },
+      { label: 'Gameplay Systems', value: 'Custom' },
+      { label: 'Target Platforms', value: 'Multi-Platform' },
     ],
   },
   {
     number: '02',
-    title: 'Digital Product Design',
-    description: 'Crafting user-centered interfaces and behavioral flows that turn complex systems into effortless interactions.',
+    title: 'UI/UX & Product Design',
+    description:
+      'Transforming ideas into intuitive digital experiences through user research, interface design, interactive prototyping, and scalable design systems.',
     image: '/images/work/home-service-ui-ux.png',
-    overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb9272cdd440a88de8dc_Mask%20group%20(22).webp',
-    services: ['User Behavior Architecture', 'Interactive Design Systems', 'Scalable UI Infrastructure'],
+    overlayImage:
+      'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb9272cdd440a88de8dc_Mask%20group%20(22).webp',
+    services: [
+      'User Experience & Journey Design',
+      'Web & Mobile App Interfaces',
+      'Prototyping & Design Systems',
+    ],
+    techStack: {
+      technologies: [
+        'Figma',
+        'FigJam',
+        'Adobe Photoshop',
+        'Adobe Illustrator',
+        'Framer',
+      ],
+      tools: [
+        'Figma Dev Mode',
+        'FigJam',
+        'Zeplin',
+        'Notion',
+        'Loom',
+      ],
+    },
     stats: [
-      { label: 'Conversion Lift', value: '+35%' },
-      { label: 'User Satisfaction', value: '98%' },
+      { label: 'Design Approach', value: 'User-First' },
+      { label: 'Product Focus', value: 'Experience-Led' },
     ],
   },
   {
     number: '03',
-    title: 'CGI & Motion Synthesis',
-    description: 'Pushing visual boundaries through character rigging, photorealistic assets, and high-fidelity 3D motion.',
-    image: '/images/work/cgi.png',
-    overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb5bb8f8413ddf5a760a_Mask%20group%20(21).webp',
-    services: ['Advanced Character Rigging', 'Photorealistic Asset Modeling', 'Cinematic Motion Graphics'],
+    title: 'Custom Web Applications',
+    description:
+      'Building scalable web platforms and tailored business applications that streamline workflows, connect systems, and turn complex requirements into practical digital solutions.',
+    image: '/images/work/web-apps.png',
+    overlayImage:
+      'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb5bb8f8413ddf5a760a_Mask%20group%20(21).webp',
+    services: [
+      'Custom Web Platforms & Dashboards',
+      'Full-Stack Application Development',
+      'API & Third-Party Integrations',
+    ],
+    techStack: {
+      technologies: [
+        'React',
+        'Next.js',
+        'Node.js',
+        'Express.js',
+        'PHP',
+        'Laravel',
+        'TypeScript',
+      ],
+      tools: [
+        'VS Code',
+        'MySQL',
+        'PostgreSQL',
+        'Supabase',
+        'Vercel',
+        'Render',
+        'GitHub',
+        'Postman',
+      ],
+    },
     stats: [
-      { label: 'Render Efficiency', value: '+60%' },
-      { label: 'Client Approval Rate', value: '99%' },
+      { label: 'Architecture', value: 'Scalable' },
+      { label: 'Integration', value: 'End-to-End' },
     ],
   },
   {
     number: '04',
-    title: 'Creative Web Engineering',
-    description: 'Architecting ultra-fast web platforms with fluid animations, dynamic routing, and seamless design integration.',
-    image: '/images/website-portfolio/Capture.png',
-    overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb9272cdd440a88de8dc_Mask%20group%20(22).webp',
-    services: ['Front-End Performance', 'Custom Shader & SVG Effects', 'Headless System Architecture'],
+    title: 'AI & Intelligent Solutions',
+    description:
+      'Creating AI-powered solutions with large language models, prompt engineering, and intelligent automation to improve workflows and unlock new product capabilities.',
+    image: '/images/work/cgi.png',
+    overlayImage:
+      'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb9272cdd440a88de8dc_Mask%20group%20(22).webp',
+    services: [
+      'LLM Integration & AI Applications',
+      'Prompt Engineering & Optimization',
+      'AI Agents & Workflow Automation',
+    ],
+    techStack: {
+      technologies: [
+        'Python',
+        'OpenAI API',
+        'Anthropic API',
+        'LangChain',
+        'Hugging Face',
+        'LlamaIndex',
+      ],
+      tools: [
+        'VS Code',
+        'Jupyter Notebook',
+        'n8n',
+        'Postman',
+        'Supabase',
+        'Pinecone',
+      ],
+    },
     stats: [
-      { label: 'Lighthouse Score', value: '99/100' },
-      { label: 'Load Time Reduction', value: '-65%' },
+      { label: 'AI Integration', value: 'LLM-Powered' },
+      { label: 'Business Focus', value: 'Automation' },
     ],
   },
   {
     number: '05',
-    title: 'Virtual & Augmented Realities',
-    description: 'Building next-generation spatial computing experiences for immersive training, gaming, and digital interaction.',
+    title: 'Mobile App Experiences',
+    description:
+      'Developing feature-rich mobile applications with intuitive interfaces, reliable performance, and seamless integrations for real-world business needs.',
     image: '/images/work/aug-realities.png',
-    overlayImage: 'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e4a2925d514ce9fea6d828_Mask%20group%20(7).webp',
-    services: ['XR Interaction Design', 'Spatial Audio & Haptics', 'Cross-Platform VR Deployment'],
+    overlayImage:
+      'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e4a2925d514ce9fea6d828_Mask%20group%20(7).webp',
+    services: [
+      'iOS & Android Applications',
+      'Cross-Platform Development',
+      'Backend & API Connectivity',
+    ],
+    techStack: {
+      technologies: [
+        'React Native',
+        'Flutter',
+        'Dart',
+        'Kotlin',
+        'Swift',
+      ],
+      tools: [
+        'Expo',
+        'Android Studio',
+        'Xcode',
+        'Firebase',
+        'Supabase',
+        'VS Code',
+      ],
+    },
     stats: [
-      { label: 'Frame Rate Stability', value: '90 FPS' },
-      { label: 'User Immersion Index', value: '95%' },
+      { label: 'Platforms', value: 'iOS & Android' },
+      { label: 'Development', value: 'End-to-End' },
     ],
   },
 ];
@@ -211,7 +336,12 @@ function WorkCard({
             transition={{ duration: 0.6, delay: 0.15 }}
             className="relative h-90 overflow-hidden rounded-[1.25rem] sm:h-110 md:h-140 lg:h-160"
           >
-            <Image src={item.image} alt={item.title} fill className="object-cover" />
+            <Image
+              src={item.image}
+              alt={item.title}
+              fill
+              className="rounded-[1.25rem] object-contain"
+            />
           </motion.div>
 
           <div className="flex flex-col justify-between gap-8">
@@ -232,6 +362,29 @@ function WorkCard({
                     className="rounded-full border border-[#FAFAFA]/30 bg-surface/8 px-3 py-1.5 text-sm text-[#FAFAFA]"
                   >
                     {service}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="flex flex-col gap-4"
+            >
+              <span className="text-sm font-semibold text-[#FAFAFA] capitalize">
+                Tech Stack
+              </span>
+              <div className="flex flex-wrap gap-2.5">
+                {[...item.techStack.technologies, ...item.techStack.tools].map((tech, techIndex) => (
+                  <span
+                    key={techIndex}
+                    className="flex items-center gap-1.5 rounded-full border border-[#FAFAFA]/30 bg-surface/8 px-3 py-1.5 text-sm text-[#FAFAFA]"
+                  >
+                    <TechIcon name={tech} className="h-4 w-4" />
+                    {tech}
                   </span>
                 ))}
               </div>

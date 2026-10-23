@@ -64,14 +64,14 @@ export default function Footer() {
   return (
     <footer id="footer" className="relative overflow-hidden px-6 py-6">
       <div className="relative mx-auto max-w-[1500px] overflow-hidden rounded-[2.5rem] bg-[radial-gradient(circle_at_50%_26%,_var(--color-dark-background),_var(--color-dark-background)_66%,_var(--color-primary-dark)_102%)] pt-20 md:rounded-[4.375rem]">
-        <Image
+        {/* <Image
           src="/images/pixgro-wordmark-footer.png"
           alt=""
           aria-hidden
           width={1288}
           height={260}
           className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-auto w-[96%] object-contain opacity-80"
-        />
+        /> */}
 
         <div className="relative z-10 px-6 md:px-14">
           <div className="flex flex-col gap-14">

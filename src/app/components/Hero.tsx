@@ -107,7 +107,7 @@ export default function Hero() {
             <Users className="h-4 w-4" />
             <span>
               <span className="bg-gradient-to-r from-primary-light to-primary-dark bg-clip-text font-semibold text-transparent">
-                1,000+{' '}
+                100+{' '}
               </span>
               satisfied clients
             </span>
