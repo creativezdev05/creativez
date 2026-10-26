@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
+import StatCounter from './StatCounter';
 import TypedText from './TypedText';
 
 interface Stat {
@@ -17,53 +17,6 @@ const stats: Stat[] = [
   { target: 5.8, decimals: 1, suffix: 'K+', label: 'projects delivered' },
   { target: 180, decimals: 0, suffix: '+', label: 'measurable results' },
 ];
-
-function useCountUp(target: number, start: boolean, decimals: number, duration = 1600) {
-  const [value, setValue] = useState(0);
-
-  useEffect(() => {
-    if (!start) return;
-
-    let frame: number;
-    let startTime: number | null = null;
-
-    const tick = (timestamp: number) => {
-      if (startTime === null) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      setValue(Number((progress * target).toFixed(decimals)));
-      if (progress < 1) frame = requestAnimationFrame(tick);
-    };
-
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [start, target, decimals, duration]);
-
-  return value;
-}
-
-function StatCounter({ target, decimals, suffix, label, delay }: Stat & { delay: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const value = useCountUp(target, isInView, decimals);
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.10, transition: { duration: 0.3 }, cursor: 'pointer', }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay }}
-      className="flex flex-col items-start gap-2"
-    >
-      <div className="text-5xl font-semibold text-heading md:text-6xl">
-        {value.toFixed(decimals)}
-        {suffix}
-      </div>
-      <p className="capitalize text-body">{label}</p>
-    </motion.div>
-  );
-}
 
 export default function About() {
   return (

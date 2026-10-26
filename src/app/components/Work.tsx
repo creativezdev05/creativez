@@ -323,7 +323,7 @@ function WorkCard({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-base text-[#A1A1AA]"
+              className="text-sm text-[#A1A1AA]"
             >
               {item.description}
             </motion.p>
@@ -426,7 +426,7 @@ export default function Work() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-shimmer-dark mb-16 text-center text-5xl font-semibold text-heading md:text-7xl"
+          className="text-shimmer mb-16 text-center text-5xl font-semibold text-heading md:text-7xl"
         >
           Recent Works
         </motion.h2>

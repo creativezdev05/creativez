@@ -2,7 +2,7 @@
 
 :root {
   /* === Colors === */
-  --color-base: #e6e5e5;
+  --color-base: #121214;
   /* --color-base: #c7d6e2; */
   /* --color-dark-background: #1b1a21; */
   /* --color-black-gradient: #1c1b22; */
@@ -320,7 +320,51 @@
     animation: 5s linear 0s infinite normal none running bubble;
     padding: 187px 63px;
 }
-  @keyframes bubble {
+
+.intro-shape {
+  --shape-delay: 0s;
+  --shape-duration: 6s;
+  --shape-spread: 0.2;
+  --shape-max: 19rem;
+  /* Keep at least half the blob inside the viewport. */
+  --shape-inset: 3.5rem;
+  --shape-out: min(var(--shape-max), (50% - 23rem) * var(--shape-spread));
+  left: max(var(--shape-inset), calc(50% - 23rem - var(--shape-out)));
+  border-radius: 64% 46% 37% 73% / 55% 58% 42% 45%;
+  background-image: var(--gradient-hero);
+  animation: bubble var(--shape-duration) linear var(--shape-delay) infinite;
+}
+
+.intro-shape--left.is-settled {
+  animation:
+    bubble var(--shape-duration) linear var(--shape-delay) infinite,
+    intro-shape-float-left calc(var(--shape-duration) * 0.85) ease-in-out var(--shape-delay) infinite alternate;
+}
+
+@media (min-width: 80rem) {
+  .intro-shape {
+    --shape-inset: 5rem;
+  }
+}
+
+@media (min-width: 96rem) {
+  .intro-shape {
+    --shape-inset: 6.25rem;
+  }
+}
+
+.intro-shape--right {
+  left: auto;
+  right: max(var(--shape-inset), calc(50% - 23rem - var(--shape-out)));
+}
+
+.intro-shape--right.is-settled {
+  animation:
+    bubble var(--shape-duration) linear var(--shape-delay) infinite,
+    intro-shape-float-right calc(var(--shape-duration) * 0.85) ease-in-out var(--shape-delay) infinite alternate;
+}
+
+@keyframes bubble {
   0%, 100% {
     border-radius: 64% 46% 37% 73% / 55% 58% 42% 45%;
   }
@@ -332,5 +376,41 @@
   }
   75% {
     border-radius: 40% 60% 70% 30% / 47% 62% 38% 53%;
+  }
+}
+
+.intro-shape-drift--left {
+  animation: intro-shape-drift-left 6.5s ease-in-out infinite alternate;
+}
+
+.intro-shape-drift--right {
+  animation: intro-shape-drift-right 6.5s ease-in-out infinite alternate;
+}
+
+@keyframes intro-shape-drift-left {
+  from { transform: translateY(0) rotate(0deg); }
+  to { transform: translateY(-12px) rotate(8deg); }
+}
+
+@keyframes intro-shape-drift-right {
+  from { transform: translateY(0) rotate(0deg); }
+  to { transform: translateY(-12px) rotate(-8deg); }
+}
+
+@keyframes intro-shape-float-left {
+  0% {
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-18px) rotate(12deg);
+  }
+}
+
+@keyframes intro-shape-float-right {
+  0% {
+    transform: translateX(50%) translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(50%) translateY(-18px) rotate(-12deg);
   }
 }

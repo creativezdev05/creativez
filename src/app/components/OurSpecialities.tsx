@@ -14,27 +14,50 @@ interface PlatformGroup {
 
 const platformGroups: PlatformGroup[] = [
   {
-    title: 'E-Commerce & CMS Platforms',
+    title: 'Game Development',
     description:
-      'We build, customize, and scale online stores and websites on the platforms businesses trust most.',
+      'We build and ship mobile games in Unity with production-ready architecture, clean C# patterns, and store-ready builds. From multiplayer to live services, we follow best practices so every release stays maintainable and version-controlled.',
+    platforms: ['Unity', 'C#', 'VS Code',
+                'Photon', '3ds Max', 'Maya',
+                'Substance Painter', 'Unreal Engine',
+                'OpenAI API', 'GitHub', 'Play Store',
+                'App Store', 'AppGallery'],
+    theme: 'dark',
+  },
+  {
+    title: 'UI/UX Design',
+    description:
+      'We design player and user first interfaces with clear flows, consistent systems, and polished 2D/3D visuals that feel native on mobile and web. Design stays structured and handoff-ready so engineering can implement without guesswork.',
     platforms: [
-      'Shopify',
-      'WooCommerce',
-      'WordPress',
-      'Wix',
-      'Webflow',
-      'BigCommerce',
-      'Squarespace',
-      'Magento',
-      'PrestaShop',
+      'Figma',
+      'Photoshop',
+      'Adobe Illustrator',
+      'Framer',
+      'Blender',
+      
     ],
     theme: 'gradient',
   },
   {
-    title: 'Mobile Game Platforms',
+    title: 'Web Apps & AI Automation',
     description:
-      'We design and ship mobile games built in Unity and published across the leading app stores.',
-    platforms: ['Unity', 'Google Play', 'App Store', 'AppGallery'],
+      'We build custom web applications across modern stacks and connect them to AI-powered automation workflows that cut manual work. Commerce, backends, and automations are versioned and reviewed so shipping stays reliable as you scale.',
+    platforms: [
+      'MERN',
+      'MEAN',
+      'MEVN',
+      'MENN',
+      'PHP',
+      'Laravel',
+      'MySQL',
+      'PostgreSQL',
+      'Shopify',
+      'WooCommerce',
+      'Make',
+      'n8n',
+      'Zapier',
+      'LangChain',
+    ],
     theme: 'dark',
   },
 ];
@@ -48,7 +71,7 @@ function PlatformPanel({ group, groupIndex }: { group: PlatformGroup; groupIndex
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: groupIndex * 0.1 }}
-      className={`relative flex flex-col gap-10 overflow-hidden rounded-[2.5rem] p-8 md:p-12 ${
+      className={`relative flex flex-col gap-10 overflow-hidden rounded-[2.5rem] p-8 md:p-10 ${
         isGradient
           ? 'bg-linear-to-br from-primary-light to-primary-dark'
           : 'border border-border-dark bg-black-gradient'
@@ -72,10 +95,10 @@ function PlatformPanel({ group, groupIndex }: { group: PlatformGroup; groupIndex
 
       <div className="relative z-10 flex flex-col gap-2">
         <h3 className="text-2xl font-semibold text-[#FAFAFA] md:text-3xl">{group.title}</h3>
-        <p className="max-w-md text-base text-[#FAFAFA]/75">{group.description}</p>
+        <p className="text-sm text-[#FAFAFA]/75">{group.description}</p>
       </div>
 
-      <div className="relative z-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
+      <div className="relative z-10 grid grid-cols-2 gap-3 sm:grid-cols-3">
         {group.platforms.map((platform, index) => {
           const featured = index === 0;
           return (
@@ -86,7 +109,7 @@ function PlatformPanel({ group, groupIndex }: { group: PlatformGroup; groupIndex
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: 0.15 + index * 0.06 }}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className={`flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-4 py-6 backdrop-blur-sm transition-colors hover:border-white/35 hover:bg-white/20 hover:shadow-glow ${
+              className={`flex flex-col items-center justify-center gap-3 rounded-2xl border border-white/15 bg-white/10 px-3 py-5 backdrop-blur-sm transition-colors hover:border-white/35 hover:bg-white/20 hover:shadow-glow ${
                 featured ? 'col-span-2 sm:col-span-1' : ''
               }`}
             >
@@ -96,7 +119,7 @@ function PlatformPanel({ group, groupIndex }: { group: PlatformGroup; groupIndex
               />
               <span
                 className={`text-center font-medium text-[#FAFAFA] ${
-                  featured ? 'text-base' : 'text-sm'
+                  featured ? 'text-sm' : 'text-sm'
                 }`}
               >
                 {platform}
@@ -133,14 +156,13 @@ export default function OurSpecialities() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            whileHover={{ scale: 1.10, transition: { duration: 0.3 }, cursor: 'pointer', }}
+            whileHover={{ scale: 1.1, transition: { duration: 0.3 }, cursor: 'pointer' }}
           >
-
-            <TypedText textStr={`We specialize in the art of transforming vision into visual identity. From custom e-commerce storefronts to immersive game experiences, we build and customize across every major platform.`}/>
+            <TypedText textStr={`We specialize in mobile game development, UI/UX that players and users actually enjoy, and custom web apps powered by AI automation — all built with best practices and version-controlled workflows.`} />
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.3fr_1fr]">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {platformGroups.map((group, groupIndex) => (
             <PlatformPanel key={group.title} group={group} groupIndex={groupIndex} />
           ))}

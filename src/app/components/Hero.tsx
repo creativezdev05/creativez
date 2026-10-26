@@ -1,9 +1,112 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
-import { ArrowRight, Play, Star, Users, Pause } from 'lucide-react';
+import StatCounter from './StatCounter';
+import {
+  ArrowRight,
+  Play,
+  Star,
+  Users,
+  Pause,
+  Gamepad2,
+  AppWindow,
+  Smartphone,
+  Workflow,
+  Bot,
+  PenTool,
+  Box,
+  Clapperboard,
+  type LucideIcon,
+} from 'lucide-react';
+
+type ShapeItem = {
+  name: string;
+  icon: LucideIcon;
+  iconClass: string;
+  size: string;
+  top: string;
+  spread: number;
+  max: string;
+  delay: string;
+  duration: string;
+  opacity: string;
+};
+
+type ShapeOrigin = {
+  x: number;
+  y: number;
+  w: number;
+};
+
+const travelEase = [0.45, 0.05, 0.25, 1] as const;
+
+const shapeTravel = {
+  x: { duration: 2.8, ease: travelEase },
+  y: { duration: 2.8, ease: travelEase },
+  scale: { duration: 2.8, ease: travelEase },
+  rotate: { duration: 2.8, ease: 'linear' as const },
+};
+
+function HeroShape({
+  shape,
+  side,
+  origin,
+  skip,
+}: {
+  shape: ShapeItem;
+  side: 'left' | 'right';
+  origin: ShapeOrigin | null;
+  skip: boolean;
+}) {
+  const Icon = shape.icon;
+  const style = {
+    top: shape.top,
+    '--shape-spread': shape.spread,
+    '--shape-max': shape.max,
+    '--shape-delay': shape.delay,
+    '--shape-duration': shape.duration,
+  } as CSSProperties;
+
+  const className = `intro-shape intro-shape--${side} pointer-events-auto absolute flex flex-col items-center justify-center text-white ${shape.size} ${shape.opacity} ${skip ? 'is-settled' : ''}`;
+
+  const content = (
+    <span className={`intro-shape-drift intro-shape-drift--${side} flex flex-col items-center justify-center gap-1.5`}>
+      <Icon className={`h-5 w-5 shrink-0 xl:h-6 xl:w-6 ${shape.iconClass}`} aria-hidden />
+      <span className="sr-only max-w-[6.5rem] text-center text-[25px] font-semibold leading-tight xl:not-sr-only xl:block">
+        {shape.name}
+      </span>
+    </span>
+  );
+
+  if (skip || !origin) {
+    return (
+      <h5 data-shape={shape.name} className={className} style={style}>
+        {content}
+      </h5>
+    );
+  }
+
+  const finalX = side === 'left' ? -origin.w / 2 : origin.w / 2;
+
+  return (
+    <motion.h5
+      data-shape={shape.name}
+      className={className}
+      style={style}
+      initial={{ x: origin.x, y: origin.y, rotate: 0, scale: 0.4 }}
+      animate={{ x: finalX, y: 0, rotate: side === 'left' ? 720 : -720, scale: 1 }}
+      transition={shapeTravel}
+      whileHover={{
+        scale: 1.2,
+        transition: { duration: 0.35, ease: 'easeOut' },
+      }}
+    >
+      {content}
+    </motion.h5>
+  );
+}
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -23,6 +126,9 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const introRef = useRef<HTMLDivElement>(null);
+  const [origins, setOrigins] = useState<Record<string, ShapeOrigin> | null>(null);
+  const [skipShapeTravel, setSkipShapeTravel] = useState(false);
 
   const handlePlayClick = () => {
     setIsPlaying(true);
@@ -64,20 +170,88 @@ export default function Hero() {
     setShowPause(false);
   };
 
+  const shapeSize = 'h-28 w-28 xl:h-40 xl:w-40 2xl:h-50 2xl:w-50';
+
+  const leftShapes: ShapeItem[] = [
+    { name: 'Mobile Games', icon: Gamepad2, iconClass: 'text-amber-300', size: shapeSize, top: '-8%', spread: 0.2, max: '19rem', delay: '0s', duration: '6s', opacity: 'opacity-100' },
+    { name: 'Web Apps', icon: AppWindow, iconClass: 'text-sky-300', size: shapeSize, top: '20%', spread: 0.55, max: '28rem', delay: '1.2s', duration: '7.5s', opacity: 'opacity-100' },
+    { name: 'Mobile Apps', icon: Smartphone, iconClass: 'text-emerald-300', size: shapeSize, top: '50%', spread: 0.55, max: '28rem', delay: '0.6s', duration: '8s', opacity: 'opacity-100' },
+    { name: 'AI Automation', icon: Workflow, iconClass: 'text-violet-300', size: shapeSize, top: '75%', spread: 0.2, max: '19rem', delay: '2s', duration: '5.5s', opacity: 'opacity-100' },
+  ];
+
+  const rightShapes: ShapeItem[] = [
+    { name: 'Agentic AI', icon: Bot, iconClass: 'text-rose-300', size: shapeSize, top: '-8%', spread: 0.2, max: '19rem', delay: '0.8s', duration: '7s', opacity: 'opacity-100' },
+    { name: 'UI/UX', icon: PenTool, iconClass: 'text-pink-300', size: shapeSize, top: '20%', spread: 0.55, max: '28rem', delay: '1.8s', duration: '6.5s', opacity: 'opacity-100' },
+    { name: '3D Designs', icon: Box, iconClass: 'text-cyan-300', size: shapeSize, top: '50%', spread: 0.55, max: '28rem', delay: '0.3s', duration: '8.5s', opacity: 'opacity-100' },
+    { name: 'Motion Graphics', icon: Clapperboard, iconClass: 'text-orange-300', size: shapeSize, top: '75%', spread: 0.2, max: '19rem', delay: '1.5s', duration: '5.8s', opacity: 'opacity-100' },
+  ];
+
+  useLayoutEffect(() => {
+    const root = introRef.current;
+    if (!root) return;
+
+    const nodes = [...root.querySelectorAll<HTMLElement>('[data-shape]')];
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || nodes.length < 8 || nodes[0].offsetWidth === 0) {
+      setSkipShapeTravel(true);
+      return;
+    }
+
+    const parent = root.getBoundingClientRect();
+    const centerX = parent.left + parent.width / 2;
+    const centerY = parent.top + parent.height / 2;
+    const next: Record<string, ShapeOrigin> = {};
+
+    nodes.forEach((node) => {
+      const name = node.dataset.shape;
+      const rect = node.getBoundingClientRect();
+      if (!name || rect.width === 0) return;
+      next[name] = {
+        x: centerX - (rect.left + rect.width / 2),
+        y: centerY - (rect.top + rect.height / 2),
+        w: rect.width,
+      };
+    });
+
+    if (Object.keys(next).length === 8) setOrigins(next);
+    else setSkipShapeTravel(true);
+  }, []);
+
   return (
     <section
       ref={sectionRef}
       className="relative overflow-hidden px-6 pt-40 pb-24 md:pt-48 md:pb-32"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 mx-auto flex w-full max-w-[1500px] justify-between"
-      >
-        <div className="h-full w-px bg-border" />
-        <div className="h-full w-px bg-border" />
-        <div className="h-full w-px bg-border" />
-        <div className="h-full w-px bg-border" />
-      </div>
+      <div ref={introRef} className="relative w-full">
+        {/* Left decorative shapes */}
+        <div
+          className={`pointer-events-none absolute inset-0 z-20 hidden lg:block ${origins || skipShapeTravel ? '' : 'invisible'}`}
+        >
+          {leftShapes.map((shape) => (
+            <HeroShape
+              key={shape.name}
+              shape={shape}
+              side="left"
+              origin={origins?.[shape.name] ?? null}
+              skip={skipShapeTravel}
+            />
+          ))}
+        </div>
+
+        {/* Right decorative shapes */}
+        <div
+          className={`pointer-events-none absolute inset-0 z-20 hidden lg:block ${origins || skipShapeTravel ? '' : 'invisible'}`}
+        >
+          {rightShapes.map((shape) => (
+            <HeroShape
+              key={shape.name}
+              shape={shape}
+              side="right"
+              origin={origins?.[shape.name] ?? null}
+              skip={skipShapeTravel}
+            />
+          ))}
+        </div>
 
       <div className="intro_layers relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-9 text-center">
         <motion.div
@@ -106,9 +280,13 @@ export default function Hero() {
           <div className="flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-sm font-medium text-body">
             <Users className="h-4 w-4" />
             <span>
-              <span className="bg-gradient-to-r from-primary-light to-primary-dark bg-clip-text font-semibold text-transparent">
-                100+{' '}
-              </span>
+              <StatCounter
+                target={100}
+                decimals={0}
+                suffix="+"
+                variant="inline"
+                className="bg-gradient-to-r from-primary-light to-primary-dark bg-clip-text font-semibold text-transparent"
+              />{' '}
               satisfied clients
             </span>
           </div>
@@ -123,7 +301,7 @@ export default function Hero() {
           transition={{ type: "spring", stiffness: 400, damping: 70,  duration: 0.6, delay: 0.1 }}
           className="text-shimmer text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
         >
-          Scale your brand with unlimited design
+          Elevate Your Tech & Design
         </motion.h1>
 
         <motion.p
@@ -131,8 +309,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-xl text-white leading-relaxed text-body md:text-lg"
         >
-          Unlock endless creative possibilities and keep your brand growing with
-          on-demand, high-quality design solutions tailored to your vision.
+          Accelerate business growth and bring your digital vision to life with reliable, scalable on-demand solutions that deliver immersive mobile games, dynamic motion graphics, robust web apps, and intuitive UI/UX design tailored for success.
         </motion.p>
 
         <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.3 }}>
@@ -145,6 +322,7 @@ export default function Hero() {
             <span className="absolute inset-0 -z-10 rounded-full opacity-0 shadow-[0_0_48px_rgba(195,84,229,0.45)] transition-opacity duration-300 group-hover:opacity-100" />
           </a>
         </motion.div>
+      </div>
       </div>
 
       <motion.div
