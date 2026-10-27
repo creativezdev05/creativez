@@ -91,7 +91,7 @@ export default function Footer() {
                     height={150}
                     className="h-10 w-auto self-start object-contain"
                   />
-                  <p className="max-w-sm text-base text-[#FAFAFA]/70">
+                  <p className="max-w-sm text-sm text-[#FAFAFA]/70">
                     Crafting bold digital experiences through design, strategy, and motion.
                   </p>
                 </motion.div>
@@ -103,7 +103,7 @@ export default function Footer() {
                       variants={itemVariants}
                       href={link.href}
                       whileHover={{ y: -2 }}
-                      className="group relative text-base font-medium text-[#FAFAFA] transition-colors hover:text-primary-light"
+                      className="group relative text-sm font-medium text-[#FAFAFA] transition-colors hover:text-primary-light"
                     >
                       {link.label}
                       <span className="absolute -bottom-1 left-0 h-px w-0 bg-primary-light transition-all duration-300 group-hover:w-full" />
@@ -140,7 +140,7 @@ export default function Footer() {
               >
                 <div className="flex h-full flex-col justify-between gap-8 rounded-[2.5rem] bg-footer-card/60 p-7 backdrop-blur-[1.5px] md:p-9">
                   <div className="flex flex-col gap-1">
-                    <span className="text-base text-[#FAFAFA]">Subscribe to Our</span>
+                    <span className="text-sm text-[#FAFAFA]">Subscribe to Our</span>
                     <h2 className="text-left text-3xl font-semibold text-[#FAFAFA] md:text-4xl">
                       Newsletter
                     </h2>
@@ -211,7 +211,7 @@ export default function Footer() {
                     </p>
                   )}
 
-                  <p className="mt-2 text-base text-[#FAFAFA]/80 italic">
+                  <p className="mt-2 text-sm text-[#FAFAFA]/80 italic">
                     &ldquo;Your monthly dose of creativity, delivered straight to your
                     inbox.&rdquo;
                   </p>

@@ -158,7 +158,7 @@ export default function OurSpecialities() {
             transition={{ duration: 0.6, delay: 0.1 }}
             whileHover={{ scale: 1.1, transition: { duration: 0.3 }, cursor: 'pointer' }}
           >
-            <TypedText textStr={`We specialize in mobile game development, UI/UX that players and users actually enjoy, and custom web apps powered by AI automation — all built with best practices and version-controlled workflows.`} />
+            <TypedText textStr={`We specialize in mobile game development, UI/UX that players and users actually enjoy, and custom web apps powered by AI automation all built with best practices and version controlled workflows.`} />
           </motion.div>
         </div>
 

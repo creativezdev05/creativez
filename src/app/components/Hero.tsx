@@ -253,7 +253,18 @@ export default function Hero() {
           ))}
         </div>
 
-      <div className="intro_layers relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-9 text-center">
+      <div className="intro_layers relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
+      <motion.h1
+          {...fadeUp}
+          // transition={{ duration: 0.6, delay: 0.1 }}
+          whileHover={{ 
+              scale: 1.2,
+            }}
+          transition={{ type: "spring", stiffness: 400, damping: 70,  duration: 0.6, delay: 0.1 }}
+          className="text-shimmer text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
+        >
+          Creativez Solutions
+        </motion.h1>
         <motion.div
           {...fadeUp}
           // transition={{ duration: 0.6 }}
@@ -292,17 +303,17 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        <motion.h1
+        <motion.h4
           {...fadeUp}
           // transition={{ duration: 0.6, delay: 0.1 }}
           whileHover={{ 
               scale: 1.2,
             }}
           transition={{ type: "spring", stiffness: 400, damping: 70,  duration: 0.6, delay: 0.1 }}
-          className="text-shimmer text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
+          className="text-shimmer "
         >
           Elevate Your Tech & Design
-        </motion.h1>
+        </motion.h4>
 
         <motion.p
           {...fadeUp}
@@ -343,14 +354,22 @@ export default function Hero() {
         </motion.div>
 
         <div className="relative z-10 rounded-[2.5rem] bg-linear-to-br from-dark-background to-primary-dark p-3">
-          <Image
-            src="https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e3670d695bceafcafb82b6_ee7f5d47945ea67f4340bae30affb453_Vector%201.svg"
-            alt=""
+          <svg
             aria-hidden
-            width={282}
-            height={160}
-            className="pointer-events-none absolute -top-2 left-1/2 hidden h-auto w-45 -translate-x-1/2 md:block"
-          />
+            viewBox="0 0 240 56"
+            className="pointer-events-none absolute top-0 left-1/2 z-10 hidden h-14 w-60 -translate-x-1/2 md:block"
+          >
+            <defs>
+              <linearGradient id="hero-border-blend" x1="0" y1="0" x2="240" y2="56" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#023b73" />
+                <stop offset="100%" stopColor="#014083" />
+              </linearGradient>
+            </defs>
+            <path
+              fill="url(#hero-border-blend)"
+              d="M0 0C40 0 48 0 70 14C92 28 100 48 120 52C140 48 148 28 170 14C192 0 200 0 240 0Z"
+            />
+          </svg>
 
           <div className="pointer-events-none absolute -top-10 left-1/2 z-20 hidden h-32 w-32 -translate-x-1/2 items-center justify-center rounded-full bg-white shadow-[0_8px_24px_rgba(0,0,0,0.18)] md:flex">
             <motion.div
@@ -382,7 +401,7 @@ export default function Hero() {
                     type="button"
                     onClick={handlePauseClick}
                     aria-label="Pause showreel"
-                    className="absolute z-20 flex h-16 w-16 items-center justify-center rounded-full bg-surface text-heading transition-all hover:scale-105 focus:outline-none"
+                    className="absolute z-20 flex h-16 w-16 items-center justify-center rounded-full bg-white text-dark-background shadow-[0_8px_24px_rgba(0,0,0,0.18)] transition-all hover:scale-105 focus:outline-none"
                   >
                     <Pause className="h-6 w-6 fill-current" />
                   </button>
@@ -402,9 +421,9 @@ export default function Hero() {
                   type="button"
                   onClick={handlePlayClick}
                   aria-label="Play showreel"
-                  className="relative z-20 flex h-16 w-16 items-center justify-center rounded-full bg-surface text-heading transition-transform hover:scale-105 focus:outline-none"
+                  className="relative z-20 flex h-16 w-16 items-center justify-center rounded-full bg-white text-dark-background shadow-[0_8px_24px_rgba(0,0,0,0.18)] transition-transform hover:scale-105 focus:outline-none"
                 >
-                  <Play className="h-6 w-6 fill-current" />
+                  <Play className="ml-0.5 h-6 w-6 fill-current" />
                 </button>
               </>
             )}

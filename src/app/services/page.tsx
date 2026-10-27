@@ -27,8 +27,8 @@ export default async function ServicesPage() {
           <h1 className="text-4xl font-semibold leading-tight tracking-tight text-heading md:text-6xl">
             Our Services
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-body md:text-lg">
-            Everything we design, build and grow for your brand — pick a service to see what&apos;s
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-body md:text-lg">
+            Everything we design, build and grow for your brand pick a service to see what&apos;s
             included.
           </p>
         </div>
@@ -40,7 +40,7 @@ export default async function ServicesPage() {
             <Link
               key={service.slug}
               href={`/services/${service.slug}`}
-              className="group flex flex-col overflow-hidden rounded-[2rem] border border-primary/15 bg-surface/40 transition-shadow hover:shadow-lg"
+              className="group flex flex-col overflow-hidden rounded-[2rem] border border-primary/15 bg-surface transition-shadow hover:shadow-lg"
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Image
@@ -52,7 +52,7 @@ export default async function ServicesPage() {
                 />
               </div>
               <div className="flex flex-1 flex-col gap-3 p-6">
-                <h2 className="text-xl font-semibold text-heading">{service.title}</h2>
+                <h2 className="text-xl font-semibold text-base/80">{service.title}</h2>
                 <p className="flex-1 text-sm leading-relaxed text-body">{service.description}</p>
                 <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary-dark">
                   View detail

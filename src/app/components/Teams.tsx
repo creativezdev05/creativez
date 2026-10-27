@@ -128,7 +128,7 @@ export default function Teams() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mb-24 grid grid-cols-1 items-center gap-10 rounded-[3rem] bg-gray-50/50 p-6 md:grid-cols-12 md:p-12 lg:gap-16"
+          className="mb-24 grid grid-cols-1 items-center gap-10 rounded-[3rem] bg-surface p-6 md:grid-cols-12 md:p-12 lg:gap-16"
         >
           {/* Left Column: CEO Image */}
           <div className="relative aspect-3/4 w-full overflow-hidden rounded-[2.5rem] bg-primary md:col-span-5 lg:col-span-5">
