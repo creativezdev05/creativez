@@ -139,7 +139,27 @@ export const techIcons: Record<string, IconType> = {
   AppGallery: SiAppgallery,
 };
 
+// react-icons uses currentColor unless a logo color is supplied explicitly.
+const techIconColors: Record<string, string> = {
+  Unity: '#FFFFFF', 'C#': '#9B4F96', Photon: '#004480', 'Unreal Engine': '#FFFFFF', 'C++': '#00599C',
+  Blender: '#E87D0D', '3ds Max': '#0696D7', Maya: '#37A5CC', 'Substance Painter': '#E8752A',
+  'Visual Studio': '#5C2D91', 'VS Code': '#007ACC', GitHub: '#FFFFFF', Firebase: '#FFCA28',
+  Photoshop: '#31A8FF', 'Adobe Photoshop': '#31A8FF', Figma: '#F24E1E', FigJam: '#F24E1E',
+  'Figma Dev Mode': '#F24E1E', 'Adobe Illustrator': '#FF9A00', Framer: '#0055FF', Notion: '#FFFFFF',
+  Loom: '#625DF5', React: '#61DAFB', 'React Native': '#61DAFB', 'Next.js': '#FFFFFF',
+  'Node.js': '#5FA04E', 'Express.js': '#FFFFFF', MongoDB: '#47A248', Angular: '#DD0031',
+  Vue: '#4FC08D', NestJS: '#E0234E', MERN: '#47A248', MEAN: '#DD0031', MEVN: '#4FC08D', MENN: '#E0234E',
+  PHP: '#777BB4', Laravel: '#FF2D20', TypeScript: '#3178C6', MySQL: '#4479A1', PostgreSQL: '#4169E1',
+  Supabase: '#3ECF8E', Vercel: '#FFFFFF', Render: '#46E3B7', Postman: '#FF6C37', Python: '#3776AB',
+  'OpenAI API': '#74AA9C', 'Anthropic API': '#D4A27F', LangChain: '#1C3C3C', 'Hugging Face': '#FFD21E',
+  'Jupyter Notebook': '#F37626', n8n: '#EA4B71', Make: '#6D00CC', Zapier: '#FF4A00', Flutter: '#54C5F8',
+  Dart: '#0175C2', Kotlin: '#7F52FF', Swift: '#F05138', Expo: '#FFFFFF', 'Android Studio': '#3DDC84',
+  Xcode: '#147EFB', Shopify: '#7AB55C', WooCommerce: '#96588A', WordPress: '#21759B', Wix: '#FFFFFF',
+  Magento: '#F46F25', BigCommerce: '#FFFFFF', Squarespace: '#FFFFFF', Webflow: '#4353FF',
+  PrestaShop: '#DF0067', 'Google Play': '#34A853', 'App Store': '#0D96F6', AppGallery: '#C8102E',
+};
+
 export function TechIcon({ name, className }: { name: string; className?: string }) {
   const Icon = techIcons[name] ?? Code2;
-  return <Icon className={className} aria-hidden />;
+  return <Icon className={className} color={techIconColors[name] ?? 'currentColor'} aria-hidden />;
 }

@@ -46,7 +46,7 @@ const shapeTravel = {
   x: { duration: 2.8, ease: travelEase },
   y: { duration: 2.8, ease: travelEase },
   scale: { duration: 2.8, ease: travelEase },
-  rotate: { duration: 2.8, ease: 'linear' as const },
+  rotate: { duration: 0, ease: 'linear' as const },
 };
 
 function HeroShape({

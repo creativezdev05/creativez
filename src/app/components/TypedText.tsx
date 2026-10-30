@@ -9,7 +9,7 @@ export default function TypedText({ textStr }: { textStr: string }) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.03, // Timing between characters
+        staggerChildren: 0.010, // Timing between characters
         delayChildren: 0.1,
       },
     },

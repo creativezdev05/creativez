@@ -25,7 +25,7 @@ const platformGroups: PlatformGroup[] = [
     theme: 'dark',
   },
   {
-    title: 'UI/UX Design',
+    title: '3D Modeling  & animations',
     description:
       'We design player and user first interfaces with clear flows, consistent systems, and polished 2D/3D visuals that feel native on mobile and web. Design stays structured and handoff-ready so engineering can implement without guesswork.',
     platforms: [

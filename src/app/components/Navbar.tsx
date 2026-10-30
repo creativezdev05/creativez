@@ -8,9 +8,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLenis } from './SmoothScroll';
 
-const navLinks = [
+const navLinks: { label: string; href: string; section?: string }[] = [
   { label: 'Home', href: '#' },
-  { label: 'Services', href: '#Service' },
+  { label: 'Services', href: '/services', section: '#Service' },
   { label: 'About', href: '#About' },
   { label: 'Work', href: '#Work' },
   { label: 'Testimonial', href: '#Testimonial' },
@@ -18,10 +18,28 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [active, setActive] = useState('Home');
   const lenisRef = useLenis();
   const pathname = usePathname();
   const isHome = pathname === '/';
+  const activeLink = pathname.startsWith('/services') ? 'Services' : active;
+
+  useEffect(() => {
+    if (pathname.startsWith('/services')) {
+      setActive('Services');
+      return;
+    }
+    if (!isHome) return;
+    setActive('Home');
+  }, [isHome, pathname]);
+
+  useEffect(() => {
+    const updateScrollState = () => setIsScrolled(window.scrollY > 0);
+    updateScrollState();
+    window.addEventListener('scroll', updateScrollState, { passive: true });
+    return () => window.removeEventListener('scroll', updateScrollState);
+  }, []);
 
   const scrollToSection = (href: string) => {
     const lenis = lenisRef?.current;
@@ -45,7 +63,7 @@ export default function Navbar() {
     if (!isHome) return;
     const hash = window.location.hash;
     if (!hash) return;
-    const match = navLinks.find((l) => l.href === hash);
+    const match = navLinks.find((link) => link.href === hash || link.section === hash);
     const timer = setTimeout(() => {
       scrollToSection(hash);
       if (match) setActive(match.label);
@@ -54,15 +72,21 @@ export default function Navbar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isHome]);
 
-  const linkHref = (href: string) => {
-    if (isHome) return href;
-    return href === '#' ? '/' : `/${href}`;
+  const linkHref = (link: (typeof navLinks)[number]) => {
+    if (link.label === 'Services') return '/services';
+    if (isHome) return link.href;
+    return link.href === '#' ? '/' : `/${link.href}`;
   };
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: { label: string; href: string }) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: (typeof navLinks)[number]) => {
     setActive(link.label);
     setIsOpen(false);
-    if (isHome) {
+    if (link.label === 'Services' && isHome) {
+      e.preventDefault();
+      scrollToSection(link.section ?? link.href);
+      return;
+    }
+    if (isHome && link.href.startsWith('#')) {
       e.preventDefault();
       scrollToSection(link.href);
     }
@@ -74,11 +98,13 @@ export default function Navbar() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="fixed inset-x-0 top-0 z-50 border-b border-[#262626] bg-nav/80 backdrop-blur-md"
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        isScrolled ? 'border-b border-[#262626] bg-nav/80 backdrop-blur-md' : 'border-b border-transparent bg-transparent'
+      }`}
     >
       <div className="mx-auto flex max-w-[1500px] items-center justify-between px-6 py-4">
-        <a
-          href={linkHref('#')}
+        <Link
+          href="/"
           onClick={(e) => {
             setActive('Home');
             setIsOpen(false);
@@ -93,22 +119,22 @@ export default function Navbar() {
           <span className="text-lg font-semibold text-[#FAFAFA]">
             <Image src="/images/logo/logo.png" alt="Logo" width={150} height={150} />
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-8 rounded-full border border-[#262626] px-6 py-2 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.label}
-              href={linkHref(link.href)}
+              href={linkHref(link)}
               onClick={(e) => handleNavClick(e, link)}
               className={`group relative py-1 text-sm font-medium transition-colors ${
-                active === link.label ? 'text-[#FAFAFA]' : 'text-[#A1A1AA] hover:text-[#FAFAFA]'
+                activeLink === link.label ? 'text-[#FAFAFA]' : 'text-[#A1A1AA] hover:text-[#FAFAFA]'
               }`}
             >
               {link.label}
               <span
                 className={`absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gradient-to-r from-primary-light to-primary-dark transition-transform duration-300 ${
-                  active === link.label ? 'scale-x-100' : 'group-hover:scale-x-100'
+                  activeLink === link.label ? 'scale-x-100' : 'group-hover:scale-x-100'
                 }`}
               />
             </a>
@@ -147,10 +173,10 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <a
                   key={link.label}
-                  href={linkHref(link.href)}
+                  href={linkHref(link)}
                   onClick={(e) => handleNavClick(e, link)}
                   className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                    active === link.label
+                    activeLink === link.label
                       ? 'bg-nav-item text-[#FAFAFA]'
                       : 'text-[#A1A1AA] hover:bg-nav-item hover:text-[#FAFAFA]'
                   }`}

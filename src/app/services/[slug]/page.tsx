@@ -7,6 +7,7 @@ import Footer from '@/app/components/Footer';
 import Navbar from '@/app/components/Navbar';
 import ServiceQuoteForm from '@/app/components/ServiceQuoteForm';
 import { getServiceBySlug, getServices } from '@/lib/services';
+import CurtainBackground from '@/app/components/CurtainBackground';
 
 export const revalidate = 60;
 
@@ -43,13 +44,13 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
   return (
     <main className="relative min-h-screen text-slate-900 antialiased selection:bg-indigo-500 selection:text-white">
       {/* Background canvas */}
-      <DotGridBackground dotColor="#6366f1" className="fixed inset-0 -z-10 opacity-70" />
+      <CurtainBackground />
       <Navbar />
 
       <div className="relative mx-auto max-w-[1500px] px-4 pt-32 pb-20 space-y-12 md:pt-40 md:space-y-16">
         
         {/* HERO SECTION CONTAINER */}
-        <section className="relative overflow-hidden rounded-2xl border border-slate-200/80 bg-[#0074D0] p-6 shadow-xl shadow-indigo-900/5 backdrop-blur-md md:p-10">
+        <section className="relative overflow-hidden  p-6 md:p-10">
           <div className="relative aspect-[16/7] w-full overflow-hidden rounded-2xl border border-slate-100 shadow-inner">
             <Image
               src={detail.heroImage}

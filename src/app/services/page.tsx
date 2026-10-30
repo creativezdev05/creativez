@@ -6,6 +6,7 @@ import DotGridBackground from '@/app/components/DotGridBackground';
 import Footer from '@/app/components/Footer';
 import Navbar from '@/app/components/Navbar';
 import { getServices } from '@/lib/services';
+import CurtainBackground from '../components/CurtainBackground';
 
 export const revalidate = 60;
 
@@ -19,7 +20,7 @@ export default async function ServicesPage() {
 
   return (
     <main className="relative min-h-screen">
-      <DotGridBackground dotColor="#6366f1" className="fixed inset-0 -z-10" />
+      <CurtainBackground />
       <Navbar />
 
       <section className="relative px-6 pt-40 pb-16 md:pt-48">

@@ -1,6 +1,7 @@
 import About from "./components/About";
 import Achievements from "./components/Achievements";
 import Brands from "./components/Brands";
+import CurtainBackground from "./components/CurtainBackground";
 import DotGridBackground from "./components/DotGridBackground";
 import Faq from "./components/Faq";
 import Footer from "./components/Footer";
@@ -24,10 +25,11 @@ export default async function Home() {
 
   return (
     <main className="relative min-h-screen">
-      <DotGridBackground
+      <CurtainBackground />
+      {/* <DotGridBackground
         dotColor="#0786db"
         className="fixed inset-0 -z-10"
-      />
+      /> */}
       <Navbar />
       <Hero />
       <HomeService services={services} />
