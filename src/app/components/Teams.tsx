@@ -186,7 +186,7 @@ export default function Teams() {
               What Our CEO Says
             </motion.h3>
 
-            <blockquote className="border-l-4 border-primary pl-4 text-xl font-medium italic text-heading md:text-2xl">
+            <blockquote className="border-l-4 border-primary pl-4 text-xl font-medium italic text-base/80 md:text-2xl">
               &ldquo;{ceoData.quote}&rdquo;
             </blockquote>
 
