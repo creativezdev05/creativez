@@ -43,13 +43,14 @@ export default async function ServicesPage() {
               href={`/services/${service.slug}`}
               className="group flex flex-col overflow-hidden rounded-[2rem] border border-primary/15 bg-surface transition-shadow hover:shadow-lg"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden">
+              <div className="relative w-full overflow-hidden">
                 <Image
                   src={service.thumbnail}
                   alt={service.title}
-                  fill
+                  width={800}
+                  height={600}
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="h-auto w-full transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
               <div className="flex flex-1 flex-col gap-3 p-6">
