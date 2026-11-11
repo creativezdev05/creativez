@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useMotionValue, useMotionValueEvent, useTransform, type MotionValue } from 'framer-motion';
+import { animate, motion, useMotionValue, useMotionValueEvent, useTransform, type MotionValue } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type RefObject } from 'react';
 import { TechIcon } from './techIcons';
@@ -10,6 +10,9 @@ import { TechIcon } from './techIcons';
  * hold the front card, flip it to the video, flip back to the content,
  * then slide the next card forward. Side cards turn in perspective with the
  * video playing behind a compact set of icons.
+ * Hovering the front card pauses the loop, turns that card to its content,
+ * and a click turns it to the video. The side cards stay where they are.
+ * Leaving the front card resumes the loop.
  */
 const CARD_SECONDS = 4;
 const LOOP_SECONDS = CARD_SECONDS * 3;
@@ -98,6 +101,21 @@ function sceneAt(progress: number): Scene {
   return { active, flips, opens };
 }
 
+function stableCenter(progress: number) {
+  const p = ((progress % 1) + 1) % 1;
+  const span = 1 / 3;
+  const index = Math.floor(p / span) % 3;
+  const local = (p - index * span) / span;
+  if (local >= FLIP_BACK_END) return -1;
+  return index;
+}
+
+function faceProgress(index: number, video: boolean) {
+  const span = 1 / 3;
+  const local = video ? (FLIP_TO_END + VIDEO_END) / 2 : SHOW_END * 0.4;
+  return index * span + local * span;
+}
+
 function wrappedOffset(index: number, active: number) {
   let offset = index - active;
   offset %= 3;
@@ -132,6 +150,7 @@ function slotRotateY(offset: number) {
 function useAutoProgress(targetRef: RefObject<HTMLElement | null>) {
   const progress = useMotionValue(0);
   const playback = useMotionValue(0);
+  const paused = useRef(false);
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -147,9 +166,9 @@ function useAutoProgress(targetRef: RefObject<HTMLElement | null>) {
       last = now;
       elapsed += dt;
       const ramp = smootherstep(Math.min(1, elapsed / 800));
-      const running = seen && !document.hidden;
-      playback.set(running ? 1 : 0);
-      if (running) {
+      const visible = seen && !document.hidden;
+      playback.set(visible ? 1 : 0);
+      if (visible && !paused.current) {
         progress.set((progress.get() + (dt / 1000) * ramp / LOOP_SECONDS) % 1);
       }
       frame = requestAnimationFrame(tick);
@@ -170,7 +189,7 @@ function useAutoProgress(targetRef: RefObject<HTMLElement | null>) {
     };
   }, [playback, progress, targetRef]);
 
-  return { progress, playback };
+  return { progress, playback, paused };
 }
 
 function layoutFor(width: number, height: number, cardH: number) {
@@ -286,18 +305,27 @@ function shouldPlayVideo(progress: number, index: number) {
   return scene.opens[index] > 0.42;
 }
 
+function cardShowsVideo(progress: number, index: number, heldIndex: number, heldFlip: number) {
+  if (heldIndex === index) return heldFlip > 8;
+  return shouldPlayVideo(progress, index);
+}
+
 function CardVideo({
   group,
   fit,
   index,
   progress,
   playback,
+  holdIndex,
+  holdFlip,
 }: {
   group: PlatformGroup;
   fit: MotionValue<number>;
   index: number;
   progress: MotionValue<number>;
   playback: MotionValue<number>;
+  holdIndex: MotionValue<number>;
+  holdFlip: MotionValue<number>;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [failed, setFailed] = useState(false);
@@ -322,7 +350,7 @@ function CardVideo({
     let starting = false;
     let near = false;
     const sync = () => {
-      const play = near && playback.get() > 0.5 && shouldPlayVideo(progress.get(), index);
+      const play = near && playback.get() > 0.5 && cardShowsVideo(progress.get(), index, holdIndex.get(), holdFlip.get());
       if (play) video.preload = 'auto';
       if (play) {
         if (video.paused && !starting) {
@@ -343,6 +371,8 @@ function CardVideo({
     video.addEventListener('canplaythrough', reveal);
     const unsubscribe = progress.on('change', sync);
     const unsubPlayback = playback.on('change', sync);
+    const unsubHold = holdIndex.on('change', sync);
+    const unsubHoldFlip = holdFlip.on('change', sync);
     const observer = new IntersectionObserver(([entry]) => {
       near = entry.isIntersecting;
       sync();
@@ -353,10 +383,12 @@ function CardVideo({
       observer.disconnect();
       unsubscribe();
       unsubPlayback();
+      unsubHold();
+      unsubHoldFlip();
       video.removeEventListener('canplaythrough', reveal);
       video.pause();
     };
-  }, [group.video, index, playback, progress]);
+  }, [group.video, holdFlip, holdIndex, index, playback, progress]);
 
   if (!group.video || failed) {
     return (
@@ -397,16 +429,28 @@ function SideBlend({
   index,
   progress,
   playback,
+  holdIndex,
+  holdFlip,
 }: {
   group: PlatformGroup;
   fit: MotionValue<number>;
   index: number;
   progress: MotionValue<number>;
   playback: MotionValue<number>;
+  holdIndex: MotionValue<number>;
+  holdFlip: MotionValue<number>;
 }) {
   return (
     <div className="absolute inset-0 overflow-hidden rounded-[2.5rem] bg-[#022D49] shadow-[0_24px_50px_rgba(0,0,0,0.45)]">
-      <CardVideo group={group} fit={fit} index={index} progress={progress} playback={playback} />
+      <CardVideo
+        group={group}
+        fit={fit}
+        index={index}
+        progress={progress}
+        playback={playback}
+        holdIndex={holdIndex}
+        holdFlip={holdFlip}
+      />
       <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/10 via-black/25 to-[#021826]/78" />
       <div className="relative z-10 flex h-full flex-col justify-between gap-3 p-4">
         <h3 className="w-fit max-w-full rounded-full bg-black/50 px-3 py-1 text-sm font-semibold text-white backdrop-blur-sm">
@@ -428,6 +472,38 @@ function SideBlend({
   );
 }
 
+function FlipSwoosh({ side }: { side: 'top-right' | 'bottom-left' }) {
+  const id = side === 'top-right' ? 'flip-swoosh-tr' : 'flip-swoosh-bl';
+
+  return (
+    <svg viewBox="0 0 100 100" className={`card-flip-hint__arrow card-flip-hint__arrow--${side}`} aria-hidden>
+      <defs>
+        <linearGradient id={id} x1="0.2" y1="0.85" x2="0.8" y2="0.2">
+          <stop offset="0%" stopColor="#7af3ff" stopOpacity="0.35" />
+          <stop offset="55%" stopColor="#3ecbff" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#1496ff" />
+        </linearGradient>
+      </defs>
+      {/* Full tip + trail as one shape: base of tip is complete, tip points inward */}
+      <path
+        fill={`url(#${id})`}
+        d="M68 80C76 56 66 36 48 32V18L16 32L48 46V38C60 40 68 52 64 76Z"
+      />
+    </svg>
+  );
+}
+
+function RevealArrows() {
+  return (
+    <div className="card-flip-hint" aria-hidden>
+      <span className="card-flip-hint__mist card-flip-hint__mist--top-right" />
+      <span className="card-flip-hint__mist card-flip-hint__mist--bottom-left" />
+      <FlipSwoosh side="top-right" />
+      <FlipSwoosh side="bottom-left" />
+    </div>
+  );
+}
+
 function SpecialtyCard({
   group,
   index,
@@ -436,6 +512,12 @@ function SpecialtyCard({
   spacing,
   fit,
   cardHeight,
+  holdIndex,
+  holdFlip,
+  interactive,
+  onEnter,
+  onLeave,
+  onSelect,
 }: {
   group: PlatformGroup;
   index: number;
@@ -444,6 +526,12 @@ function SpecialtyCard({
   spacing: MotionValue<number>;
   fit: MotionValue<number>;
   cardHeight: MotionValue<number>;
+  holdIndex: MotionValue<number>;
+  holdFlip: MotionValue<number>;
+  interactive: boolean;
+  onEnter: (index: number) => void;
+  onLeave: () => void;
+  onSelect: (index: number) => void;
 }) {
   const x = useTransform([progress, spacing], (values: number[]) => {
     const scene = sceneAt(values[0]);
@@ -464,13 +552,33 @@ function SpecialtyCard({
   const zIndex = useTransform(progress, (p) => {
     return Math.round(40 - Math.abs(wrappedOffset(index, sceneAt(p).active)) * 12);
   });
-  const flip = useTransform(progress, (p) => sceneAt(p).flips[index]);
+  const flip = useTransform([progress, holdIndex, holdFlip], (values: number[]) => {
+    if (values[1] === index) return values[2];
+    return sceneAt(values[0]).flips[index];
+  });
   const openAmount = useTransform(progress, (p) => sceneAt(p).opens[index]);
   const closedAmount = useTransform(openAmount, (open) => 1 - open);
 
   return (
     <motion.div
-      className="absolute top-1/2 left-1/2"
+      className={`absolute top-1/2 left-1/2 ${interactive ? 'group cursor-pointer' : ''}`}
+      role={interactive ? 'button' : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      aria-label={interactive ? `${group.title}. Click to turn the card.` : undefined}
+      onMouseEnter={interactive ? () => onEnter(index) : undefined}
+      onMouseLeave={interactive ? onLeave : undefined}
+      onBlur={interactive ? onLeave : undefined}
+      onClick={interactive ? () => onSelect(index) : undefined}
+      onKeyDown={
+        interactive
+          ? (event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                onSelect(index);
+              }
+            }
+          : undefined
+      }
       style={{
         width: CARD_W,
         height: cardHeight,
@@ -481,6 +589,7 @@ function SpecialtyCard({
         rotateY,
         opacity,
         zIndex,
+        pointerEvents: interactive ? 'auto' : 'none',
         transformStyle: 'preserve-3d',
         transformOrigin: 'center center',
         willChange: 'transform',
@@ -497,12 +606,29 @@ function SpecialtyCard({
           className="absolute inset-0 overflow-hidden rounded-[2.5rem] bg-[#022D49] shadow-[0_24px_60px_rgba(0,0,0,0.38)]"
           style={{ ...faceStyle, transform: 'rotateY(180deg)' }}
         >
-          <CardVideo group={group} fit={fit} index={index} progress={progress} playback={playback} />
+          <CardVideo
+            group={group}
+            fit={fit}
+            index={index}
+            progress={progress}
+            playback={playback}
+            holdIndex={holdIndex}
+            holdFlip={holdFlip}
+          />
         </div>
       </motion.div>
       <motion.div aria-hidden className="absolute inset-0" style={{ opacity: openAmount }}>
-        <SideBlend group={group} fit={fit} index={index} progress={progress} playback={playback} />
+        <SideBlend
+          group={group}
+          fit={fit}
+          index={index}
+          progress={progress}
+          playback={playback}
+          holdIndex={holdIndex}
+          holdFlip={holdFlip}
+        />
       </motion.div>
+      {interactive ? <RevealArrows /> : null}
     </motion.div>
   );
 }
@@ -557,8 +683,73 @@ function MotionCarousel({ groups }: { groups: PlatformGroup[] }) {
   const cardHeight = useMotionValue(CARD_H_INITIAL);
   const spacing = useMotionValue(280);
   const fit = useMotionValue(0.86);
-  const { progress, playback } = useAutoProgress(viewportRef);
+  const { progress, playback, paused } = useAutoProgress(viewportRef);
+  const holdIndex = useMotionValue(-1);
+  const holdFlip = useMotionValue(0);
+  const turn = useRef<{ stop: () => void } | null>(null);
+  const heldFace = useRef<'content' | 'video'>('content');
+  const [center, setCenter] = useState(0);
   const [placed, setPlaced] = useState(false);
+
+  useEffect(() => () => turn.current?.stop(), []);
+
+  useMotionValueEvent(progress, 'change', (value) => {
+    const next = stableCenter(value);
+    setCenter((prev) => (prev === next ? prev : next));
+  });
+
+  const stopTurn = () => {
+    turn.current?.stop();
+    turn.current = null;
+  };
+
+  const showFace = (index: number, video: boolean) => {
+    stopTurn();
+    paused.current = true;
+    if (holdIndex.get() !== index) {
+      holdFlip.set(sceneAt(progress.get()).flips[index]);
+      holdIndex.set(index);
+    }
+    const target = video ? 180 : 0;
+    if (Math.abs(holdFlip.get() - target) < 0.5) {
+      holdFlip.set(target);
+      return;
+    }
+    turn.current = animate(holdFlip, target, {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+    });
+  };
+
+  const onEnter = (index: number) => {
+    if (stableCenter(progress.get()) !== index) return;
+    heldFace.current = 'content';
+    showFace(index, false);
+  };
+
+  const onSelect = (index: number) => {
+    if (stableCenter(progress.get()) !== index && holdIndex.get() !== index) return;
+    const video = heldFace.current !== 'video';
+    heldFace.current = video ? 'video' : 'content';
+    showFace(index, video);
+  };
+
+  const onLeave = () => {
+    const index = holdIndex.get();
+    if (index < 0) {
+      paused.current = false;
+      return;
+    }
+    stopTurn();
+    const video = heldFace.current === 'video';
+    const displayed = video ? 180 : 0;
+    holdFlip.set(displayed);
+    if (Math.abs(sceneAt(progress.get()).flips[index] - displayed) > 2) {
+      progress.set(faceProgress(index, video));
+    }
+    holdIndex.set(-1);
+    paused.current = false;
+  };
 
   useLayoutEffect(() => {
     const viewport = viewportRef.current;
@@ -641,6 +832,12 @@ function MotionCarousel({ groups }: { groups: PlatformGroup[] }) {
               spacing={spacing}
               fit={fit}
               cardHeight={cardHeight}
+              holdIndex={holdIndex}
+              holdFlip={holdFlip}
+              interactive={index === center}
+              onEnter={onEnter}
+              onLeave={onLeave}
+              onSelect={onSelect}
             />
           ))}
         </div>
