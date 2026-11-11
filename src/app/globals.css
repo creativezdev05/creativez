@@ -396,10 +396,22 @@
   to { transform: translate3d(2.5%, 0, 0) scale(1.04); }
 }
 
+.service-carousel-static {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .curtain-background__folds,
   .curtain-background__glow {
     animation: none;
+  }
+
+  .service-carousel-motion {
+    display: none;
+  }
+
+  .service-carousel-static {
+    display: grid;
   }
 }
 .animate-marquee-vertical {

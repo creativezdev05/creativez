@@ -153,7 +153,7 @@ export default function Teams() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`${ceoData.name} on X`}
-                className="flex h-12 w-12 items-center justify-center rounded-[0.6875rem] bg-surface text-heading transition-transform hover:scale-105"
+                className="flex h-12 w-12 items-center justify-center rounded-[0.6875rem] bg-surface text-base transition-transform hover:scale-105"
               >
                 <X className="h-5 w-5" />
               </a>
@@ -162,7 +162,7 @@ export default function Teams() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`${ceoData.name} on Instagram`}
-                className="flex h-12 w-12 items-center justify-center rounded-[0.6875rem] bg-surface text-heading transition-transform hover:scale-105"
+                className="flex h-12 w-12 items-center justify-center rounded-[0.6875rem] bg-surface text-base transition-transform hover:scale-105"
               >
                 <LinkedinIcon className="h-5 w-5" />
               </a>

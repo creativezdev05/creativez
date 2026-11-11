@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Award, Type } from 'lucide-react';
+import { Award } from 'lucide-react';
 import TypedText from './TypedText';
 
 interface Achievement {
@@ -13,19 +13,19 @@ interface Achievement {
 
 const achievements: Achievement[] = [
   {
-    multiplier: '4X',
+    multiplier: '1X',
     title: 'Creative Excellence Award',
     description: 'Four consecutive wins celebrating bold design, boundary-pushing concepts, and visual storytelling.',
     year: '2022',
   },
   {
-    multiplier: '1X',
+    multiplier: '2X',
     title: 'Branding Innovation Award',
     description: 'Honored for building identity systems that resonate, scale, and define modern brands.',
     year: '2024',
   },
   {
-    multiplier: '1X',
+    multiplier: '4X',
     title: 'Design Trailblazer Award',
     description: 'Recognized for pioneering fresh visual solutions and shaping next-generation design standards.',
     year: '2026',
@@ -62,7 +62,7 @@ export default function Achievements() {
           </motion.div>
         </div>
 
-        <div className="flex flex-col gap-5">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {achievements.map((item, index) => (
             <motion.div
               key={`${item.title}-${index}`}
@@ -70,24 +70,23 @@ export default function Achievements() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="flex flex-col items-start gap-6 rounded-[1.875rem] bg-surface p-8 md:flex-row md:items-center md:gap-10 md:p-10"
+              className="flex h-full flex-col gap-6 rounded-[1.875rem] bg-surface p-8"
             >
-              <div className="flex h-16 w-16 flex-none items-center justify-center rounded-2xl bg-linear-to-br from-primary-light to-primary-dark">
-                <Award className="h-8 w-8 text-[#FAFAFA]" />
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex h-16 w-16 flex-none items-center justify-center rounded-2xl bg-linear-to-br from-primary-light to-primary-dark">
+                  <Award className="h-8 w-8 text-[#FAFAFA]" />
+                </div>
+                <span className="text-xl font-semibold text-[#3d4048]">{item.year}</span>
               </div>
 
-              <span className="bg-linear-to-r from-primary-light to-primary-dark bg-clip-text text-3xl font-semibold text-transparent md:w-28 md:flex-none">
+              <span className="bg-linear-to-r from-primary-light to-primary-dark bg-clip-text text-5xl font-semibold text-transparent">
                 {item.multiplier}
               </span>
 
               <div className="flex flex-1 flex-col gap-2">
                 <h6 className="text-xl font-semibold text-[#3d4048]">{item.title}</h6>
-                <p className=" text-[#57576b]">{item.description}</p>
+                <p className="text-[#57576b]">{item.description}</p>
               </div>
-
-              <span className="text-xl font-semibold text-[#3d4048] md:flex-none">
-                {item.year}
-              </span>
             </motion.div>
           ))}
         </div>

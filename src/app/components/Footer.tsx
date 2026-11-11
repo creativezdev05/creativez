@@ -25,10 +25,9 @@ function TwitterIcon(props: React.SVGProps<SVGSVGElement>) {
 
 const menuLinks = [
   { label: 'Home', href: '/' },
-  { label: 'About Us', href: '#About' },
-  { label: 'Projects', href: '#Projects' },
-  { label: 'Service', href: '#Service' },
-  { label: 'Contact', href: '#Service' },
+  { label: 'About Us', href: '/#About' },
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Terms of Use', href: '/terms-of-use' },
 ];
 
 const socialLinks = [

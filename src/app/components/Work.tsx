@@ -428,7 +428,7 @@ export default function Work() {
           transition={{ duration: 0.6 }}
           className="text-shimmer mb-16 text-center text-5xl font-semibold text-heading md:text-7xl"
         >
-          Recent Works
+          Behind Our Expertise
         </motion.h2>
 
         <div className="relative flex flex-col gap-3">
