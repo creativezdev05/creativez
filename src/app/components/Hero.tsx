@@ -108,12 +108,6 @@ function HeroShape({
   );
 }
 
-const fadeUp = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-};
-
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -255,23 +249,19 @@ export default function Hero() {
 
       <div className="intro_layers relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
       <motion.h1
-          {...fadeUp}
-          // transition={{ duration: 0.6, delay: 0.1 }}
           whileHover={{ 
               scale: 1.2,
             }}
-          transition={{ type: "spring", stiffness: 400, damping: 70,  duration: 0.6, delay: 0.1 }}
+          transition={{ type: "spring", stiffness: 400, damping: 70 }}
           className="text-shimmer text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
         >
           Creativez Solutions
         </motion.h1>
         <motion.div
-          {...fadeUp}
-          // transition={{ duration: 0.6 }}
           whileHover={{ 
               scale: 1.2,
             }}
-          transition={{ type: "spring", stiffness: 400, damping: 70,  duration: 0.6 }}
+          transition={{ type: "spring", stiffness: 400, damping: 70 }}
           className="flex flex-wrap items-center justify-center gap-4"
         >
           <div className="flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2">
@@ -304,26 +294,22 @@ export default function Hero() {
         </motion.div>
 
         <motion.h4
-          {...fadeUp}
-          // transition={{ duration: 0.6, delay: 0.1 }}
           whileHover={{ 
               scale: 1.2,
             }}
-          transition={{ type: "spring", stiffness: 400, damping: 70,  duration: 0.6, delay: 0.1 }}
+          transition={{ type: "spring", stiffness: 400, damping: 70 }}
           className="text-shimmer "
         >
           Elevate Your Tech & Design
         </motion.h4>
 
-        <motion.p
-          {...fadeUp}
-          transition={{ duration: 0.6, delay: 0.2 }}
+        <p
           className="max-w-xl text-white leading-relaxed text-body md:text-lg"
         >
           Accelerate business growth and bring your digital vision to life with reliable, scalable on-demand solutions that deliver immersive mobile games, dynamic motion graphics, robust web apps, and intuitive UI/UX design tailored for success.
-        </motion.p>
+        </p>
 
-        <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.3 }}>
+        <div>
           <a
             href="#Email"
             className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-gradient-to-br from-primary-light to-primary-dark px-7 py-4 text-sm font-semibold text-[#FAFAFA] transition-colors hover:bg-dark hover:bg-none"
@@ -332,17 +318,11 @@ export default function Hero() {
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             <span className="absolute inset-0 -z-10 rounded-full opacity-0 shadow-[0_0_48px_rgba(195,84,229,0.45)] transition-opacity duration-300 group-hover:opacity-100" />
           </a>
-        </motion.div>
+        </div>
       </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, delay: 0.3 }}
-        className="relative z-10 mx-auto mt-24 max-w-[1500px] px-2"
-      >
+      <div className="relative z-10 mx-auto mt-24 max-w-[1500px] px-2">
         <motion.div
           aria-hidden
           style={{ y: watermarkY }}
@@ -410,10 +390,11 @@ export default function Hero() {
             ) : (
               <>
                 <Image
-                  src="/images/hero/banner.png"
+                  src="/images/hero/banner.webp"
                   alt="Designer working at a desk with a colorful gradient screen"
                   fill
                   priority
+                  sizes="(min-width: 768px) 1500px, 100vw"
                   className="object-cover"
                 />
 
@@ -429,7 +410,7 @@ export default function Hero() {
             )}
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

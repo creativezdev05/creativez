@@ -20,7 +20,7 @@ const testimonials: Testimonial[] = [
     role: 'CEO',
     avatar:
       'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e51940d340b6d600c57a94_66c42679a0a118c60d5ea03c_Client%20Photo%205.webp',
-    image: '/images/testimonials/laptop.png',
+    image: '/images/testimonials/laptop.webp',
   },
   {
     quote:
@@ -29,7 +29,7 @@ const testimonials: Testimonial[] = [
     role: 'Marketer',
     avatar:
       'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e5e86d3dec1117ca4859d7_Ellipse%203%20(2).webp',
-    image: '/images/testimonials/mob.png',
+    image: '/images/testimonials/mob.webp',
   },
   {
     quote:
@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
     role: 'Marketer',
     avatar:
       'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e5e86d9de0717533e33f4c_Ellipse%203%20(1).webp',
-    image: '/images/work/3.png',
+    image: '/images/work/3.webp',
   },
 ];
 

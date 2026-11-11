@@ -314,14 +314,16 @@ function CardVideo({
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
-    video.preload = 'auto';
+    video.preload = 'none';
 
     const reveal = () => {
       if (video.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA) setReady(true);
     };
     let starting = false;
+    let near = false;
     const sync = () => {
-      const play = playback.get() > 0.5 && shouldPlayVideo(progress.get(), index);
+      const play = near && playback.get() > 0.5 && shouldPlayVideo(progress.get(), index);
+      if (play) video.preload = 'auto';
       if (play) {
         if (video.paused && !starting) {
           starting = true;
@@ -341,9 +343,14 @@ function CardVideo({
     video.addEventListener('canplaythrough', reveal);
     const unsubscribe = progress.on('change', sync);
     const unsubPlayback = playback.on('change', sync);
-    sync();
+    const observer = new IntersectionObserver(([entry]) => {
+      near = entry.isIntersecting;
+      sync();
+    }, { rootMargin: '240px' });
+    observer.observe(video);
 
     return () => {
+      observer.disconnect();
       unsubscribe();
       unsubPlayback();
       video.removeEventListener('canplaythrough', reveal);
@@ -369,7 +376,7 @@ function CardVideo({
         muted
         loop
         playsInline
-        preload="auto"
+        preload="none"
         onError={() => setFailed(true)}
         className="absolute inset-0 h-full w-full max-w-none object-cover"
       />

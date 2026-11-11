@@ -117,7 +117,7 @@ export default function Navbar() {
         >
 
           <span className="text-lg font-semibold text-[#FAFAFA]">
-            <Image src="/images/logo/logo.png" alt="Logo" width={150} height={150} />
+            <Image src="/images/logo/logo.webp" alt="Logo" width={150} height={150} />
           </span>
         </Link>
 

@@ -1,21 +1,21 @@
-import About from "./components/About";
-import Achievements from "./components/Achievements";
-import Brands from "./components/Brands";
+import dynamic from "next/dynamic";
 import CurtainBackground from "./components/CurtainBackground";
-import DotGridBackground from "./components/DotGridBackground";
-import Faq from "./components/Faq";
-import Footer from "./components/Footer";
 import Hero from "./components/Hero";
-import HomeService from "./components/HomeService";
 import Navbar from "./components/Navbar";
-import OurSpecialities from "./components/OurSpecialities";
-import Pricing from "./components/Pricing";
-import Services from "./components/Services";
-import Teams from "./components/Teams";
-import Testimonials from "./components/Testimonials";
-import Work from "./components/Work";
 import { getServices } from "@/lib/services";
 import { getFaqs } from "@/lib/faqs";
+
+const HomeService = dynamic(() => import("./components/HomeService"));
+const About = dynamic(() => import("./components/About"));
+const Services = dynamic(() => import("./components/Services"));
+const Work = dynamic(() => import("./components/Work"));
+const OurSpecialities = dynamic(() => import("./components/OurSpecialities"));
+const Testimonials = dynamic(() => import("./components/Testimonials"));
+const Achievements = dynamic(() => import("./components/Achievements"));
+const Brands = dynamic(() => import("./components/Brands"));
+const Teams = dynamic(() => import("./components/Teams"));
+const Faq = dynamic(() => import("./components/Faq"));
+const Footer = dynamic(() => import("./components/Footer"));
 
 export const revalidate = 60;
 
@@ -26,10 +26,6 @@ export default async function Home() {
   return (
     <main className="relative min-h-screen">
       <CurtainBackground />
-      {/* <DotGridBackground
-        dotColor="#0786db"
-        className="fixed inset-0 -z-10"
-      /> */}
       <Navbar />
       <Hero />
       <HomeService services={services} />

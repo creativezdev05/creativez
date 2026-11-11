@@ -21,11 +21,11 @@ function getAdminApp() {
 const db = getFirestore(getAdminApp());
 
 const gameDevelopmentThumb = '/images/services/game-development-thumb.png';
-const gameDevelopmentHero = '/images/services/game-development.png';
+const gameDevelopmentHero = '/images/services/game-development.webp';
 const threeDThumb = '/images/services/3d-thumb.png';
-const threeDHero = '/images/services/3d.png';
+const threeDHero = '/images/services/3d.webp';
 const websiteDevelopmentThumb = '/images/services/website-development-thumb.png';
-const websiteDevelopmentHero = '/images/services/website-development.png';
+const websiteDevelopmentHero = '/images/services/website-development.webp';
 const strategicBrandingThumb = '/images/services/str-brand-thumb.png';
 const strategicBrandingHero = '/images/services/str-brand.png';
 const uiUxThumb = '/images/services/ui-ux-thumb.png';

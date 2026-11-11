@@ -213,7 +213,6 @@ export default function HomeService({ services }: HomeServiceProps) {
                         alt={item.title}
                         fill
                         sizes="(min-width: 1024px) 52vw, 100vw"
-                        priority={index === 0}
                         className="object-cover"
                       />
                     </Link>

@@ -33,7 +33,7 @@ const works: WorkItem[] = [
     title: 'Interactive Game Experiences',
     description:
       'Designing and engineering engaging mobile and cross-platform games, combining gameplay systems, immersive environments, and polished interactive experiences.',
-    image: '/images/work/1.png',
+    image: '/images/work/1.webp',
     overlayImage:
       'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e4a2925d514ce9fea6d828_Mask%20group%20(7).webp',
     services: [
@@ -67,7 +67,7 @@ const works: WorkItem[] = [
     title: 'UI/UX & Product Design',
     description:
       'Transforming ideas into intuitive digital experiences through user research, interface design, interactive prototyping, and scalable design systems.',
-    image: '/images/work/home-service-ui-ux.png',
+    image: '/images/work/home-service-ui-ux.webp',
     overlayImage:
       'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb9272cdd440a88de8dc_Mask%20group%20(22).webp',
     services: [
@@ -101,7 +101,7 @@ const works: WorkItem[] = [
     title: 'Custom Web Applications',
     description:
       'Building scalable web platforms and tailored business applications that streamline workflows, connect systems, and turn complex requirements into practical digital solutions.',
-    image: '/images/work/web-apps.png',
+    image: '/images/work/web-apps.webp',
     overlayImage:
       'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb5bb8f8413ddf5a760a_Mask%20group%20(21).webp',
     services: [
@@ -140,7 +140,7 @@ const works: WorkItem[] = [
     title: 'AI & Intelligent Solutions',
     description:
       'Creating AI-powered solutions with large language models, prompt engineering, and intelligent automation to improve workflows and unlock new product capabilities.',
-    image: '/images/work/cgi.png',
+    image: '/images/work/cgi.webp',
     overlayImage:
       'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e9fb9272cdd440a88de8dc_Mask%20group%20(22).webp',
     services: [
@@ -176,7 +176,7 @@ const works: WorkItem[] = [
     title: 'Mobile App Experiences',
     description:
       'Developing feature-rich mobile applications with intuitive interfaces, reliable performance, and seamless integrations for real-world business needs.',
-    image: '/images/work/aug-realities.png',
+    image: '/images/work/aug-realities.webp',
     overlayImage:
       'https://cdn.prod.website-files.com/6597ccea909e42269476248f/68e4a2925d514ce9fea6d828_Mask%20group%20(7).webp',
     services: [

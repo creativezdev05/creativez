@@ -24,7 +24,7 @@ const ceoData: CeoMember = {
   name: 'Shanza Khan',
   role: 'Chief Executive Officer',
   image:
-    '/images/ceo/ceo.png',
+    '/images/ceo/ceo.webp',
   alt: 'Smiling professional man in a navy blazer and light blue shirt with arms crossed.',
   quote:
     'Innovation and design excellence drive everything we build. Our mission is to transform bold ideas into seamless digital experiences.',
@@ -143,7 +143,6 @@ export default function Teams() {
                 fill
                 sizes="(min-width: 768px) 40vw, 100vw"
                 className="object-cover"
-                priority
               />
             </motion.div>
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />

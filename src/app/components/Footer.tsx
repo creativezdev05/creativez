@@ -84,7 +84,7 @@ export default function Footer() {
               >
                 <motion.div variants={itemVariants} className="flex flex-col gap-4">
                   <Image
-                    src="/images/logo/logo.png"
+                    src="/images/logo/logo.webp"
                     alt="Creativez Solutions"
                     width={150}
                     height={150}
