@@ -391,7 +391,7 @@ export default function Hero() {
               <>
                 <video
                   ref={videoRef}
-                  src="/images/hero/hero-banner-flow.mp4"
+                  src="/images/hero/270432.mp4"
                   onEnded={handleVideoEnded}
                   playsInline
                   className="h-full w-full object-cover"
